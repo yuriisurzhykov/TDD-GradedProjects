@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.projectskeleton
+package com.yuriisurzhykov.tddgraded
 
 import org.junit.Test
 
