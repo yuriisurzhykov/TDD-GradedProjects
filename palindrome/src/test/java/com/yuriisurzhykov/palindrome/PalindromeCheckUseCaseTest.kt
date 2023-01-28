@@ -71,4 +71,18 @@ class PalindromeCheckUseCaseTest {
         assertTrue(actual is IPalindromeCheckState.InputError)
     }
 
+    @Test
+    fun `test palindrome with cyrillic sentence success`() = runBlocking {
+        val testData = PalindromeInputEntity("торт, с кофе - не фокстрот!")
+        val actual = checker.check(testData)
+        assertTrue(actual is IPalindromeCheckState.Success)
+    }
+
+    @Test
+    fun `test palindrome with cyrillic sentence failed`() = runBlocking {
+        val testData = PalindromeInputEntity("торт, с чаем - не фокстрот!")
+        val actual = checker.check(testData)
+        assertTrue(actual is IPalindromeCheckState.CheckError)
+    }
+
 }
