@@ -4,6 +4,12 @@ import java.io.FileInputStream
 plugins {
     id("com.android.application")
     id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 android {
@@ -57,6 +63,8 @@ dependencies {
     implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.materialComponents)
     implementation(Dependencies.Android.constraintLayout)
+    implementation(Dependencies.DI.hilt)
+    kapt(Dependencies.DI.hiltCompiler)
     testImplementation(Dependencies.Testing.JUnit4)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)
     androidTestImplementation(Dependencies.Testing.espressoCore)

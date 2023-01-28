@@ -11,4 +11,8 @@ object Versions {
         const val androidJUnit4 = "1.1.5"
         const val espressoCore = "3.5.1"
     }
+
+    object DI {
+        const val hilt = "2.44"
+    }
 }
