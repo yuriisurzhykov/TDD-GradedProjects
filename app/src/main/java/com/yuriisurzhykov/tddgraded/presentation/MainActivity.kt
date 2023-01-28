@@ -16,7 +16,18 @@
 
 package com.yuriisurzhykov.tddgraded.presentation
 
+import android.content.Intent
+import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.yuriisurzhykov.palindrome.presentation.PalindromeCheckActivity
 
 class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            startActivity(Intent(this, PalindromeCheckActivity::class.java).apply {
+                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+            })
+        }
+    }
 }

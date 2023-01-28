@@ -16,6 +16,14 @@
 
 package com.yuriisurzhykov.palindrome.presentation
 
-import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.yuriisurzhykov.tddgraded.presentation.AbstractFragmentActivity
 
-class PalindromeCheckActivity : AppCompatActivity() {}
+class PalindromeCheckActivity : AbstractFragmentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            openFragment(PalindromeCheckFragment(), "palindrome_check", true)
+        }
+    }
+}

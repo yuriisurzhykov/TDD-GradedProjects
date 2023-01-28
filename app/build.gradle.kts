@@ -64,6 +64,7 @@ dependencies {
     implementation(Dependencies.Android.materialComponents)
     implementation(Dependencies.Android.constraintLayout)
     implementation(Dependencies.DI.hilt)
+    implementation(project(":palindrome"))
     kapt(Dependencies.DI.hiltCompiler)
     testImplementation(Dependencies.Testing.JUnit4)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)

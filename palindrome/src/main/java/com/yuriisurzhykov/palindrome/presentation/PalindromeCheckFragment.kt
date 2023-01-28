@@ -16,7 +16,9 @@
 
 package com.yuriisurzhykov.palindrome.presentation
 
-import androidx.fragment.app.Fragment
+import com.yuriisurzhykov.palindrome.R
+import com.yuriisurzhykov.tddgraded.presentation.AbstractStyleFragment
 
-class PalindromeCheckFragment : Fragment() {
+class PalindromeCheckFragment : AbstractStyleFragment(R.layout.fragment_palindrome_check) {
+    override fun getTitle() = getString(R.string.title_palindrome_check_screen)
 }
