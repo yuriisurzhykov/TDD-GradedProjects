@@ -12,5 +12,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Project-Skeleton"
+rootProject.name = "TDD-GradedProjects"
 include(":app")

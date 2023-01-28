@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.projectskeleton
+package com.yuriisurzhykov.tddgraded
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
