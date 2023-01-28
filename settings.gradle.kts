@@ -14,4 +14,3 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TDD-GradedProjects"
 include(":app")
-include(":palindrome")
