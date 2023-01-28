@@ -64,4 +64,11 @@ class PalindromeCheckUseCaseTest {
         assertTrue(actual is IPalindromeCheckState.Success)
     }
 
+    @Test
+    fun `test palindrome from only punctuations string`() = runBlocking {
+        val testData = PalindromeInputEntity(".,.':;;")
+        val actual = checker.check(testData)
+        assertTrue(actual is IPalindromeCheckState.InputError)
+    }
+
 }

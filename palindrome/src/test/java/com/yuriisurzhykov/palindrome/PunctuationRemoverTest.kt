@@ -45,4 +45,20 @@ class PunctuationRemoverTest {
         val actual = remover.clearPunctuation(testData)
         assertEquals(expected, actual)
     }
+
+    @Test
+    fun `test remove all punctuations from only punctuations`() {
+        val testData = ":;,.,:''\")(12345677890]][[}[{}}~`/,/\\"
+        val expected = ""
+        val actual = remover.clearPunctuation(testData)
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `test remove punctuation from cyrillic sentence`() {
+        val testData = "Семён пошёл домой, когда-только пришлось;Вася весь в сопли;%111,,!"
+        val expected = "СемёнпошёлдомойкогдатолькопришлосьВасявесьвсопли"
+        val actual = remover.clearPunctuation(testData)
+        assertEquals(expected, actual)
+    }
 }
