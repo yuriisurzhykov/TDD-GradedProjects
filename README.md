@@ -3,7 +3,7 @@
 <p>There will be 5 levels of difficulty. And on each of levels there will be 10 tasks/projects.</p>
 
 0. Newbie
-- [ ] Palindrome checker
+- [ ] [Palindrome checker](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/palindrome_checker)
 - [ ] Manual String Reverse
 - [ ] Check if Prime Number
 - [ ] Tic Tac Toe Game
