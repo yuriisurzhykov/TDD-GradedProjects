@@ -21,7 +21,7 @@ interface IPunctuationRemove {
 
     class Base : IPunctuationRemove {
         override fun clearPunctuation(input: String): String {
-            return input.replace("[ ,.!?:;\\-]".toRegex(), "")
+            return input.replace("[^\\p{L}+]".toRegex(), "")
         }
     }
 }

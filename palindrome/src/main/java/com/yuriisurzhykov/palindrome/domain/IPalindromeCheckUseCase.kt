@@ -25,9 +25,9 @@ interface IPalindromeCheckUseCase {
 
     class Base(private val punctuationRemove: IPunctuationRemove) : IPalindromeCheckUseCase {
         override suspend fun check(input: PalindromeInputEntity): IPalindromeCheckState {
-            if (input.inputString.isBlank()) return IPalindromeCheckState.InputError()
             val reverse = punctuationRemove.clearPunctuation(input.inputString.reversed()).lowercase()
             val straight = punctuationRemove.clearPunctuation(input.inputString).lowercase()
+            if (straight.isBlank()) return IPalindromeCheckState.InputError()
             val isValid = reverse == straight
             return if (isValid) IPalindromeCheckState.Success() else IPalindromeCheckState.CheckError()
         }
