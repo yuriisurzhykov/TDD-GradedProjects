@@ -1,6 +1,12 @@
 plugins {
     id("com.android.library")
     id(Plugins.kotlinAndroid)
+    id(Plugins.kotlinKapt)
+    id(Plugins.hilt)
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 android {
@@ -34,6 +40,8 @@ dependencies {
     implementation(Dependencies.Android.androidCoreKtx)
     implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.materialComponents)
+    implementation(Dependencies.DI.hilt)
+    kapt(Dependencies.DI.hiltCompiler)
     implementation(project(":presentation"))
     testImplementation(Dependencies.Testing.JUnit4)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)

@@ -18,7 +18,9 @@ package com.yuriisurzhykov.palindrome.presentation
 
 import com.yuriisurzhykov.palindrome.R
 import com.yuriisurzhykov.tddgraded.presentation.AbstractStyleFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PalindromeCheckFragment : AbstractStyleFragment(R.layout.fragment_palindrome_check) {
     override fun getTitle() = getString(R.string.title_palindrome_check_screen)
 }

@@ -18,7 +18,9 @@ package com.yuriisurzhykov.palindrome.presentation
 
 import android.os.Bundle
 import com.yuriisurzhykov.tddgraded.presentation.AbstractFragmentActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PalindromeCheckActivity : AbstractFragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
