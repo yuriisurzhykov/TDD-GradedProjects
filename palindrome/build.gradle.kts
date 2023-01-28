@@ -34,6 +34,7 @@ dependencies {
     implementation(Dependencies.Android.androidCoreKtx)
     implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.materialComponents)
+    implementation(project(":presentation"))
     testImplementation(Dependencies.Testing.JUnit4)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)
     androidTestImplementation(Dependencies.Testing.espressoCore)
