@@ -1,45 +1,24 @@
-import java.util.Properties
-import java.io.FileInputStream
-
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id(Plugins.kotlinAndroid)
 }
 
 android {
-    namespace = ProjectConfigs.applicationId
+    namespace = "com.yuriisurzhykov.palindrome"
     compileSdk = ProjectConfigs.compileSdkVersion
 
     defaultConfig {
-        applicationId = ProjectConfigs.applicationId
         minSdk = ProjectConfigs.minSdkVersion
         targetSdk = ProjectConfigs.targetSdkVersion
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    signingConfigs {
-        create("release") {
-            val properties = Properties()
-            FileInputStream(file("signing.properties")).use { stream ->
-                properties.load(stream)
-            }
-            storeFile = file(properties.getProperty("keystoreFile"))
-            storePassword = properties.getProperty("keystorePassword").toString()
-            keyAlias = properties.getProperty("keyAlias").toString()
-            keyPassword = properties.getProperty("keyPassword").toString()
-        }
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        getByName("release") {
-            isDebuggable = false
+        release {
             isMinifyEnabled = true
-            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {
@@ -52,11 +31,9 @@ android {
 }
 
 dependencies {
-
     implementation(Dependencies.Android.androidCoreKtx)
     implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.materialComponents)
-    implementation(Dependencies.Android.constraintLayout)
     testImplementation(Dependencies.Testing.JUnit4)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)
     androidTestImplementation(Dependencies.Testing.espressoCore)
