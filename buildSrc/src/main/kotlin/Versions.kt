@@ -4,6 +4,11 @@ object Versions {
         const val appCompat = "1.6.0"
         const val materialComponents = "1.8.0"
         const val constraintLayout = "2.1.4"
+        const val fragmentKtx = "1.5.5"
+        const val lifecycleKtx = "2.5.1"
+        const val livedataKtx = "2.5.1"
+        const val collectionsKtx = "1.2.0"
+        const val viewmodelKtx = "2.5.1"
     }
 
     object Testing {

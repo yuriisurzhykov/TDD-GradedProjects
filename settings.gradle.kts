@@ -14,4 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TDD-GradedProjects"
 include(":app")
+include(":core")
 include(":presentation")
