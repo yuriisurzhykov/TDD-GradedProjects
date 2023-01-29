@@ -16,11 +16,27 @@
 
 package com.yuriisurzhykov.palindrome.presentation
 
+import android.os.Bundle
+import android.view.View
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.yuriisurzhykov.palindrome.R
+import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.tddgraded.presentation.AbstractStyleFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class PalindromeCheckFragment : AbstractStyleFragment(R.layout.fragment_palindrome_check) {
+
+    private val viewModel: PalindromeCheckViewModel by viewModels()
+    private val checkStateObserver = Observer<IPalindromeCheckState> {
+
+    }
+
     override fun getTitle() = getString(R.string.title_palindrome_check_screen)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.observeCheckState(viewLifecycleOwner, checkStateObserver)
+    }
 }

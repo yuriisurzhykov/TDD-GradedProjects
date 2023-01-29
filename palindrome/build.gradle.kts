@@ -37,12 +37,16 @@ android {
 }
 
 dependencies {
+    implementation(project(":presentation"))
+    implementation(project(":core"))
+
     implementation(Dependencies.Android.androidCoreKtx)
     implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.materialComponents)
     implementation(Dependencies.DI.hilt)
+    implementation(Dependencies.Android.viewmodelKtx)
+    implementation(Dependencies.Android.fragmentKtx)
     kapt(Dependencies.DI.hiltCompiler)
-    implementation(project(":presentation"))
     testImplementation(Dependencies.Testing.JUnit4)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)
     androidTestImplementation(Dependencies.Testing.espressoCore)
