@@ -18,6 +18,9 @@ object Dependencies {
         const val JUnit4 = "junit:junit:${Versions.Testing.JUnit4}"
         const val androidJUnit4 = "androidx.test.ext:junit:${Versions.Testing.androidJUnit4}"
         const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.Testing.espressoCore}"
+        const val coroutinesTest =
+            "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.Testing.coroutinesTest}"
+        const val hiltTesting = "com.google.dagger:hilt-android-testing:${Versions.DI.hilt}"
     }
 
     object DI {

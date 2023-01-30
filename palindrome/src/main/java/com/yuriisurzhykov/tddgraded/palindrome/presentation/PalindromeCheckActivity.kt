@@ -14,20 +14,18 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.tddgraded.presentation
+package com.yuriisurzhykov.tddgraded.palindrome.presentation
 
-import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.yuriisurzhykov.tddgraded.palindrome.presentation.PalindromeCheckActivity
+import com.yuriisurzhykov.tddgraded.presentation.AbstractFragmentActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
+@AndroidEntryPoint
+class PalindromeCheckActivity : AbstractFragmentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            startActivity(Intent(this, PalindromeCheckActivity::class.java).apply {
-                addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
-            })
+            openFragment(PalindromeCheckFragment(), "palindrome_check", true)
         }
     }
 }
