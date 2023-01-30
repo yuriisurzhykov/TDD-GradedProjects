@@ -27,7 +27,7 @@ import com.yuriisurzhykov.palindrome.R
 import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
 import com.yuriisurzhykov.tddgraded.presentation.AbstractStyleFragment
-import com.yuriisurzhykov.tddgraded.presentation.viewsktx.findView
+import com.yuriisurzhykov.tddgraded.presentation.delegates.viewsktx.findView
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

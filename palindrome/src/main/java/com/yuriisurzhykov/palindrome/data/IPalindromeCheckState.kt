@@ -17,16 +17,25 @@
 package com.yuriisurzhykov.palindrome.data
 
 import android.widget.TextView
+import androidx.annotation.StringRes
+import com.yuriisurzhykov.palindrome.R
+import com.yuriisurzhykov.tddgraded.presentation.resources.StringResource
 
-abstract class IPalindromeCheckState(private val checkMessage: String) {
+abstract class IPalindromeCheckState constructor(
+    private val stringResource: StringResource,
+    @StringRes private val stringId: Int
+) {
 
-    fun apply(textView: TextView) {
-        textView.text = checkMessage
+    open fun apply(textView: TextView) {
+        textView.text = stringResource.getResource(stringId, textView.context)
     }
 
-    class Success : IPalindromeCheckState("\uD83D\uDC4C")
+    class Success(stringResource: StringResource) :
+        IPalindromeCheckState(stringResource, R.string.message_input_text_palindrome)
 
-    class InputError : IPalindromeCheckState("\uD83D\uDDC5")
+    class InputError(stringResource: StringResource) :
+        IPalindromeCheckState(stringResource, R.string.message_input_text_empty)
 
-    class CheckError : IPalindromeCheckState("\uD83D\uDC4E")
+    class CheckError(stringResource: StringResource) :
+        IPalindromeCheckState(stringResource, R.string.message_input_text_not_palindrome)
 }

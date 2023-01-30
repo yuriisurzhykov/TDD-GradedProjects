@@ -18,6 +18,7 @@ package com.yuriisurzhykov.palindrome.domain
 
 import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
+import com.yuriisurzhykov.tddgraded.presentation.resources.StringResource
 
 interface IPalindromeCheckUseCase {
 
@@ -25,11 +26,14 @@ interface IPalindromeCheckUseCase {
 
     class Base(private val punctuationRemove: IPunctuationRemove) : IPalindromeCheckUseCase {
         override suspend fun check(input: PalindromeInputEntity): IPalindromeCheckState {
+            val stringResource = StringResource.Base()
+
             val reverse = punctuationRemove.clearPunctuation(input.inputString.reversed()).lowercase()
             val straight = punctuationRemove.clearPunctuation(input.inputString).lowercase()
-            if (straight.isBlank()) return IPalindromeCheckState.InputError()
+            if (straight.isBlank()) return IPalindromeCheckState.InputError(stringResource)
             val isValid = reverse == straight
-            return if (isValid) IPalindromeCheckState.Success() else IPalindromeCheckState.CheckError()
+            return if (isValid) IPalindromeCheckState.Success(stringResource)
+            else IPalindromeCheckState.CheckError(stringResource)
         }
     }
 }
