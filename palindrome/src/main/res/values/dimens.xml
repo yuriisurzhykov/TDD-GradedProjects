@@ -15,11 +15,14 @@
   -->
 
 <resources>
-    <string name="title_palindrome_check_screen">Check your palindrome!</string>
-    <string name="hint_palindrome_input">Input text</string>
-    <string name="button_check_palindrome">Check it!</string>
+    <dimen name="text_size_normal">14sp</dimen>
+    <dimen name="text_size_big">18sp</dimen>
+    <dimen name="text_size_huge">24sp</dimen>
 
-    <string name="message_input_text_palindrome">This text is palindrome 👌!</string>
-    <string name="message_input_text_not_palindrome">This text is palindrome 👎!</string>
-    <string name="message_input_text_empty">Nothing to check 👁️!</string>
+    <dimen name="margin_default">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_huge">24dp</dimen>
+    <dimen name="padding_small">4dp</dimen>
+    <dimen name="padding_default">12dp</dimen>
+    <dimen name="padding_big">20dp</dimen>
 </resources>

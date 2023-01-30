@@ -16,11 +16,17 @@
 
 package com.yuriisurzhykov.palindrome.data
 
-interface IPalindromeCheckState {
+import android.widget.TextView
 
-    class Success : IPalindromeCheckState
+abstract class IPalindromeCheckState(private val checkMessage: String) {
 
-    class InputError : IPalindromeCheckState
+    fun apply(textView: TextView) {
+        textView.text = checkMessage
+    }
 
-    class CheckError : IPalindromeCheckState
+    class Success : IPalindromeCheckState("\uD83D\uDC4C")
+
+    class InputError : IPalindromeCheckState("\uD83D\uDDC5")
+
+    class CheckError : IPalindromeCheckState("\uD83D\uDC4E")
 }
