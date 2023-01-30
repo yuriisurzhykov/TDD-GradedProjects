@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome
+package com.yuriisurzhykov.tddgraded.palindrome
 
 import com.yuriisurzhykov.palindrome.domain.IPunctuationRemove
-import org.junit.Assert.assertEquals
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
@@ -35,7 +35,7 @@ class PunctuationRemoverTest {
         val testData = "A man, a plan, a canal: Panama!!!"
         val expected = "AmanaplanacanalPanama"
         val actual = remover.clearPunctuation(testData)
-        assertEquals(expected, actual)
+        Assert.assertEquals(expected, actual)
     }
 
     @Test
@@ -43,7 +43,7 @@ class PunctuationRemoverTest {
         val testData = "Testcase"
         val expected = "Testcase"
         val actual = remover.clearPunctuation(testData)
-        assertEquals(expected, actual)
+        Assert.assertEquals(expected, actual)
     }
 
     @Test
@@ -51,7 +51,7 @@ class PunctuationRemoverTest {
         val testData = ":;,.,:''\")(12345677890]][[}[{}}~`/,/\\"
         val expected = ""
         val actual = remover.clearPunctuation(testData)
-        assertEquals(expected, actual)
+        Assert.assertEquals(expected, actual)
     }
 
     @Test
@@ -59,6 +59,6 @@ class PunctuationRemoverTest {
         val testData = "Семён пошёл домой, когда-только пришлось;Вася весь в сопли;%111,,!"
         val expected = "СемёнпошёлдомойкогдатолькопришлосьВасявесьвсопли"
         val actual = remover.clearPunctuation(testData)
-        assertEquals(expected, actual)
+        Assert.assertEquals(expected, actual)
     }
 }

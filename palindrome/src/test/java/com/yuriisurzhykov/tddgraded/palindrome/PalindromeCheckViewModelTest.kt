@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome
+package com.yuriisurzhykov.tddgraded.palindrome
 
 import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
@@ -24,7 +24,7 @@ import com.yuriisurzhykov.palindrome.presentation.PalindromeCheckViewModel
 import com.yuriisurzhykov.tddgraded.core.Communication
 import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import com.yuriisurzhykov.tddgraded.presentation.resources.StringResource
-import junit.framework.TestCase.assertEquals
+import junit.framework.TestCase
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.Before
 import org.junit.Test
@@ -46,11 +46,11 @@ class PalindromeCheckViewModelTest {
         val communication = FakePalindromeCommunication()
         val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("madam"))
-        assertEquals(true, communication.checkIsState(testData))
-        assertEquals (true, communication.checkCallCount(1))
+        TestCase.assertEquals(true, communication.checkIsState(testData))
+        TestCase.assertEquals(true, communication.checkCallCount(1))
         viewModel.applyInput(PalindromeInputEntity(""))
-        assertEquals(true, communication.checkIsState(testData))
-        assertEquals (true, communication.checkCallCount(2))
+        TestCase.assertEquals(true, communication.checkIsState(testData))
+        TestCase.assertEquals(true, communication.checkCallCount(2))
     }
 
     @Test
@@ -60,8 +60,8 @@ class PalindromeCheckViewModelTest {
         val communication = FakePalindromeCommunication()
         val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("madam"))
-        assertEquals(true, communication.checkIsState(testData))
-        assertEquals(true, communication.checkCallCount(1))
+        TestCase.assertEquals(true, communication.checkIsState(testData))
+        TestCase.assertEquals(true, communication.checkCallCount(1))
     }
 
     @Test
@@ -71,8 +71,8 @@ class PalindromeCheckViewModelTest {
         val communication = FakePalindromeCommunication()
         val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("asdjkdfjksdfg"))
-        assertEquals(true, communication.checkIsState(testData))
-        assertEquals(true, communication.checkCallCount(1))
+        TestCase.assertEquals(true, communication.checkIsState(testData))
+        TestCase.assertEquals(true, communication.checkCallCount(1))
     }
 
 }

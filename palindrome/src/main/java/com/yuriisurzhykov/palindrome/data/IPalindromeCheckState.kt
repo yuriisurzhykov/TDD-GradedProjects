@@ -18,7 +18,7 @@ package com.yuriisurzhykov.palindrome.data
 
 import android.widget.TextView
 import androidx.annotation.StringRes
-import com.yuriisurzhykov.palindrome.R
+import com.yuriisurzhykov.tddgraded.palindrome.R
 import com.yuriisurzhykov.tddgraded.presentation.resources.StringResource
 
 abstract class IPalindromeCheckState constructor(

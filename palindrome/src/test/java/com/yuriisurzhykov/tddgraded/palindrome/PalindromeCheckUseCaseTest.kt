@@ -14,14 +14,14 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome
+package com.yuriisurzhykov.tddgraded.palindrome
 
 import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
 import com.yuriisurzhykov.palindrome.domain.IPalindromeCheckUseCase
 import com.yuriisurzhykov.palindrome.domain.IPunctuationRemove
-import org.junit.Assert.assertTrue
 import kotlinx.coroutines.runBlocking
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
@@ -40,49 +40,49 @@ class PalindromeCheckUseCaseTest {
     fun `test palindrome check with success`() = runBlocking {
         val testData = PalindromeInputEntity("Madam")
         val actual = checker.check(testData)
-        assertTrue(actual is IPalindromeCheckState.Success)
+        Assert.assertTrue(actual is IPalindromeCheckState.Success)
     }
 
     @Test
     fun `test palindrome check with empty input`() = runBlocking {
         val testData = PalindromeInputEntity("")
         val actual = checker.check(testData)
-        assertTrue(actual is IPalindromeCheckState.InputError)
+        Assert.assertTrue(actual is IPalindromeCheckState.InputError)
     }
 
     @Test
     fun `test palindrome check with failed result`() = runBlocking {
         val testData = PalindromeInputEntity("something for test")
         val actual = checker.check(testData)
-        assertTrue(actual is IPalindromeCheckState.CheckError)
+        Assert.assertTrue(actual is IPalindromeCheckState.CheckError)
     }
 
     @Test
     fun `test palindrome check with palindrome sentence success`() = runBlocking {
         val testData = PalindromeInputEntity("A man, a plan, a canal: Panama!")
         val actual = checker.check(testData)
-        assertTrue(actual is IPalindromeCheckState.Success)
+        Assert.assertTrue(actual is IPalindromeCheckState.Success)
     }
 
     @Test
     fun `test palindrome from only punctuations string`() = runBlocking {
         val testData = PalindromeInputEntity(".,.':;;")
         val actual = checker.check(testData)
-        assertTrue(actual is IPalindromeCheckState.InputError)
+        Assert.assertTrue(actual is IPalindromeCheckState.InputError)
     }
 
     @Test
     fun `test palindrome with cyrillic sentence success`() = runBlocking {
         val testData = PalindromeInputEntity("торт, с кофе - не фокстрот!")
         val actual = checker.check(testData)
-        assertTrue(actual is IPalindromeCheckState.Success)
+        Assert.assertTrue(actual is IPalindromeCheckState.Success)
     }
 
     @Test
     fun `test palindrome with cyrillic sentence failed`() = runBlocking {
         val testData = PalindromeInputEntity("торт, с чаем - не фокстрот!")
         val actual = checker.check(testData)
-        assertTrue(actual is IPalindromeCheckState.CheckError)
+        Assert.assertTrue(actual is IPalindromeCheckState.CheckError)
     }
 
 }

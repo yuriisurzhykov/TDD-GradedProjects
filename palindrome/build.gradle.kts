@@ -10,13 +10,13 @@ kapt {
 }
 
 android {
-    namespace = "com.yuriisurzhykov.palindrome"
+    namespace = "${ProjectConfigs.applicationId}.palindrome"
     compileSdk = ProjectConfigs.compileSdkVersion
 
     defaultConfig {
         minSdk = ProjectConfigs.minSdkVersion
         targetSdk = ProjectConfigs.targetSdkVersion
-
+        testApplicationId = "${ProjectConfigs.applicationId}.palindrome"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }

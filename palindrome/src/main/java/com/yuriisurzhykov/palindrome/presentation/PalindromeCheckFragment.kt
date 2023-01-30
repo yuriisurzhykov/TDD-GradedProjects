@@ -23,7 +23,7 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.yuriisurzhykov.palindrome.R
+import com.yuriisurzhykov.tddgraded.palindrome.R
 import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
 import com.yuriisurzhykov.tddgraded.presentation.AbstractStyleFragment
