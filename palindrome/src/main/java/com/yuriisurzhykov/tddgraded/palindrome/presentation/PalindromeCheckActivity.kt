@@ -14,8 +14,18 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.data
+package com.yuriisurzhykov.tddgraded.palindrome.presentation
 
-data class PalindromeInputEntity(
-    val inputString: String
-)
+import android.os.Bundle
+import com.yuriisurzhykov.tddgraded.presentation.AbstractFragmentActivity
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
+class PalindromeCheckActivity : AbstractFragmentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            openFragment(PalindromeCheckFragment(), "palindrome_check", true)
+        }
+    }
+}

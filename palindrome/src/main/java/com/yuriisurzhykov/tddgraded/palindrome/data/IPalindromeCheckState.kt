@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.data
+package com.yuriisurzhykov.tddgraded.palindrome.data
 
 import android.widget.TextView
 import androidx.annotation.StringRes

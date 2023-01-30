@@ -16,11 +16,11 @@
 
 package com.yuriisurzhykov.tddgraded.palindrome
 
-import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
-import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
-import com.yuriisurzhykov.palindrome.domain.IPalindromeCheckUseCase
-import com.yuriisurzhykov.palindrome.domain.PalindromeCheckCommunication
-import com.yuriisurzhykov.palindrome.presentation.PalindromeCheckViewModel
+import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
+import com.yuriisurzhykov.tddgraded.palindrome.data.PalindromeInputEntity
+import com.yuriisurzhykov.tddgraded.palindrome.domain.IPalindromeCheckUseCase
+import com.yuriisurzhykov.tddgraded.palindrome.domain.PalindromeCheckCommunication
+import com.yuriisurzhykov.tddgraded.palindrome.presentation.PalindromeCheckViewModel
 import com.yuriisurzhykov.tddgraded.core.Communication
 import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import com.yuriisurzhykov.tddgraded.presentation.resources.StringResource

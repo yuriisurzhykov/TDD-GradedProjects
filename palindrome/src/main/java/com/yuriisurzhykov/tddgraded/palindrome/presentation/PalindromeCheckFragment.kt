@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.presentation
+package com.yuriisurzhykov.tddgraded.palindrome.presentation
 
 import android.os.Bundle
 import android.view.View
@@ -24,8 +24,8 @@ import android.widget.TextView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import com.yuriisurzhykov.tddgraded.palindrome.R
-import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
-import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
+import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
+import com.yuriisurzhykov.tddgraded.palindrome.data.PalindromeInputEntity
 import com.yuriisurzhykov.tddgraded.presentation.AbstractStyleFragment
 import com.yuriisurzhykov.tddgraded.presentation.delegates.viewsktx.findView
 import dagger.hilt.android.AndroidEntryPoint

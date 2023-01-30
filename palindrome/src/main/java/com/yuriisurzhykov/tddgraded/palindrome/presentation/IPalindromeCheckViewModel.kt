@@ -14,12 +14,11 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.domain
+package com.yuriisurzhykov.tddgraded.palindrome.presentation
 
-import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
-import com.yuriisurzhykov.tddgraded.core.Communication
+import com.yuriisurzhykov.tddgraded.palindrome.data.PalindromeInputEntity
 
-interface PalindromeCheckCommunication :
-    Communication.Put<IPalindromeCheckState>, Communication.Observe<IPalindromeCheckState> {
-    class Base : Communication.Abstract<IPalindromeCheckState>(), PalindromeCheckCommunication
+interface IPalindromeCheckViewModel {
+
+    fun applyInput(data: PalindromeInputEntity)
 }

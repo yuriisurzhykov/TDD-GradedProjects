@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="com.yuriisurzhykov.palindrome.presentation.PalindromeCheckActivity"
+            android:name=".presentation.PalindromeCheckActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
     </application>
 </manifest>

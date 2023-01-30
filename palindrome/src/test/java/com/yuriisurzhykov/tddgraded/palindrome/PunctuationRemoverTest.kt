@@ -16,7 +16,7 @@
 
 package com.yuriisurzhykov.tddgraded.palindrome
 
-import com.yuriisurzhykov.palindrome.domain.IPunctuationRemove
+import com.yuriisurzhykov.tddgraded.palindrome.domain.IPunctuationRemove
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test

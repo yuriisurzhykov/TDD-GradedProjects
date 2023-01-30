@@ -14,11 +14,8 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.presentation
+package com.yuriisurzhykov.tddgraded.palindrome.data
 
-import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
-
-interface IPalindromeCheckViewModel {
-
-    fun applyInput(data: PalindromeInputEntity)
-}
+data class PalindromeInputEntity(
+    val inputString: String
+)

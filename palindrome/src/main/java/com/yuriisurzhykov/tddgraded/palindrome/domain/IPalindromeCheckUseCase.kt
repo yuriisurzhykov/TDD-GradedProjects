@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.domain
+package com.yuriisurzhykov.tddgraded.palindrome.domain
 
-import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
-import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
+import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
+import com.yuriisurzhykov.tddgraded.palindrome.data.PalindromeInputEntity
 import com.yuriisurzhykov.tddgraded.presentation.resources.StringResource
 
 interface IPalindromeCheckUseCase {

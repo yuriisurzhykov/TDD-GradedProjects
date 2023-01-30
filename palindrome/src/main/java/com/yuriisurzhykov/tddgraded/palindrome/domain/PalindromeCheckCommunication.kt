@@ -14,14 +14,12 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.domain
+package com.yuriisurzhykov.tddgraded.palindrome.domain
 
-interface IPunctuationRemove {
-    fun clearPunctuation(input: String): String
+import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
+import com.yuriisurzhykov.tddgraded.core.Communication
 
-    class Base : IPunctuationRemove {
-        override fun clearPunctuation(input: String): String {
-            return input.replace("[^\\p{L}+]".toRegex(), "")
-        }
-    }
+interface PalindromeCheckCommunication :
+    Communication.Put<IPalindromeCheckState>, Communication.Observe<IPalindromeCheckState> {
+    class Base : Communication.Abstract<IPalindromeCheckState>(), PalindromeCheckCommunication
 }

@@ -14,18 +14,14 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.presentation
+package com.yuriisurzhykov.tddgraded.palindrome.domain
 
-import android.os.Bundle
-import com.yuriisurzhykov.tddgraded.presentation.AbstractFragmentActivity
-import dagger.hilt.android.AndroidEntryPoint
+interface IPunctuationRemove {
+    fun clearPunctuation(input: String): String
 
-@AndroidEntryPoint
-class PalindromeCheckActivity : AbstractFragmentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (savedInstanceState == null) {
-            openFragment(PalindromeCheckFragment(), "palindrome_check", true)
+    class Base : IPunctuationRemove {
+        override fun clearPunctuation(input: String): String {
+            return input.replace("[^\\p{L}+]".toRegex(), "")
         }
     }
 }

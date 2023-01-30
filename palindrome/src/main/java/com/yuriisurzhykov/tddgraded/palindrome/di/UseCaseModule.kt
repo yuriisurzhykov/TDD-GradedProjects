@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.palindrome.di
+package com.yuriisurzhykov.tddgraded.palindrome.di
 
-import com.yuriisurzhykov.palindrome.domain.IPalindromeCheckUseCase
-import com.yuriisurzhykov.palindrome.domain.IPunctuationRemove
-import com.yuriisurzhykov.palindrome.domain.PalindromeCheckCommunication
+import com.yuriisurzhykov.tddgraded.palindrome.domain.IPalindromeCheckUseCase
+import com.yuriisurzhykov.tddgraded.palindrome.domain.IPunctuationRemove
+import com.yuriisurzhykov.tddgraded.palindrome.domain.PalindromeCheckCommunication
 import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import dagger.Module
 import dagger.Provides

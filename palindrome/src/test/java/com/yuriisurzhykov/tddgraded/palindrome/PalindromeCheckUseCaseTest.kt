@@ -16,10 +16,10 @@
 
 package com.yuriisurzhykov.tddgraded.palindrome
 
-import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
-import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
-import com.yuriisurzhykov.palindrome.domain.IPalindromeCheckUseCase
-import com.yuriisurzhykov.palindrome.domain.IPunctuationRemove
+import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
+import com.yuriisurzhykov.tddgraded.palindrome.data.PalindromeInputEntity
+import com.yuriisurzhykov.tddgraded.palindrome.domain.IPalindromeCheckUseCase
+import com.yuriisurzhykov.tddgraded.palindrome.domain.IPunctuationRemove
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert
 import org.junit.Before
