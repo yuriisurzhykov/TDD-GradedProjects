@@ -18,6 +18,8 @@ package com.yuriisurzhykov.palindrome.di
 
 import com.yuriisurzhykov.palindrome.domain.IPalindromeCheckUseCase
 import com.yuriisurzhykov.palindrome.domain.IPunctuationRemove
+import com.yuriisurzhykov.palindrome.domain.PalindromeCheckCommunication
+import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,5 +39,15 @@ object UseCaseModule {
     @Singleton
     fun providePalindromeCheckUseCase(remover: IPunctuationRemove): IPalindromeCheckUseCase {
         return IPalindromeCheckUseCase.Base(remover)
+    }
+
+    @Provides
+    fun provideDispatchers(): Dispatchers {
+        return Dispatchers.Base()
+    }
+
+    @Provides
+    fun providePalindromeCheckCommunication(): PalindromeCheckCommunication {
+        return PalindromeCheckCommunication.Base()
     }
 }

@@ -16,13 +16,9 @@
 
 package com.yuriisurzhykov.palindrome.presentation
 
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
 
 interface IPalindromeCheckViewModel {
-    fun observeCheckState(owner: LifecycleOwner, observer: Observer<IPalindromeCheckState>)
 
     fun applyInput(data: PalindromeInputEntity)
 }
