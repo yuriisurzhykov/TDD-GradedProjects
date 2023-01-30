@@ -23,14 +23,16 @@ import com.yuriisurzhykov.palindrome.domain.PalindromeCheckCommunication
 import com.yuriisurzhykov.palindrome.presentation.PalindromeCheckViewModel
 import com.yuriisurzhykov.tddgraded.core.Communication
 import com.yuriisurzhykov.tddgraded.core.Dispatchers
-import junit.framework.TestCase.assertTrue
+import com.yuriisurzhykov.tddgraded.presentation.resources.StringResource
+import junit.framework.TestCase.assertEquals
+import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.Before
 import org.junit.Test
-import kotlin.properties.Delegates.notNull
 
 class PalindromeCheckViewModelTest {
 
-    private var dispatchers: Dispatchers by notNull()
+    private lateinit var dispatchers: Dispatchers
+    private var stringResource = StringResource.Base()
 
     @Before
     fun initialize() {
@@ -39,35 +41,38 @@ class PalindromeCheckViewModelTest {
 
     @Test
     fun `check view model input error`() {
-        val useCase = FakePalindromeCheckUseCase(IPalindromeCheckState.InputError())
+        val testData = IPalindromeCheckState.InputError(stringResource)
+        val useCase = FakePalindromeCheckUseCase(testData)
         val communication = FakePalindromeCommunication()
         val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("madam"))
-        assertTrue(communication.checkIsState(IPalindromeCheckState.InputError()))
-        assertTrue(communication.checkCallCount(1))
+        assertEquals(true, communication.checkIsState(testData))
+        assertEquals (true, communication.checkCallCount(1))
         viewModel.applyInput(PalindromeInputEntity(""))
-        assertTrue(communication.checkIsState(IPalindromeCheckState.InputError()))
-        assertTrue(communication.checkCallCount(2))
+        assertEquals(true, communication.checkIsState(testData))
+        assertEquals (true, communication.checkCallCount(2))
     }
 
     @Test
     fun `check view model success`() {
-        val useCase = FakePalindromeCheckUseCase(IPalindromeCheckState.Success())
+        val testData = IPalindromeCheckState.Success(stringResource)
+        val useCase = FakePalindromeCheckUseCase(testData)
         val communication = FakePalindromeCommunication()
         val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("madam"))
-        assertTrue(communication.checkIsState(IPalindromeCheckState.Success()))
-        assertTrue(communication.checkCallCount(1))
+        assertEquals(true, communication.checkIsState(testData))
+        assertEquals(true, communication.checkCallCount(1))
     }
 
     @Test
     fun `check view model have check error`() {
-        val useCase = FakePalindromeCheckUseCase(IPalindromeCheckState.CheckError())
+        val testData = IPalindromeCheckState.CheckError(stringResource)
+        val useCase = FakePalindromeCheckUseCase(testData)
         val communication = FakePalindromeCommunication()
         val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("asdjkdfjksdfg"))
-        assertTrue(communication.checkIsState(IPalindromeCheckState.CheckError()))
-        assertTrue(communication.checkCallCount(1))
+        assertEquals(true, communication.checkIsState(testData))
+        assertEquals(true, communication.checkCallCount(1))
     }
 
 }
@@ -81,7 +86,7 @@ private class FakePalindromeCheckUseCase constructor(
 private class FakePalindromeCommunication : Communication.Abstract<IPalindromeCheckState>(),
     PalindromeCheckCommunication {
 
-    private var value: IPalindromeCheckState by notNull()
+    private lateinit var value: IPalindromeCheckState
     private var callCount: Int = 0
 
     override fun put(value: IPalindromeCheckState) {
@@ -94,7 +99,4 @@ private class FakePalindromeCommunication : Communication.Abstract<IPalindromeCh
     fun checkCallCount(count: Int) = callCount == count
 }
 
-private class FakeDispatchers : Dispatchers.Abstract(
-    uiDispatcher = kotlinx.coroutines.Dispatchers.IO,
-    backgroundDispatcher = kotlinx.coroutines.Dispatchers.IO,
-)
+private class FakeDispatchers : Dispatchers.Abstract(UnconfinedTestDispatcher(), UnconfinedTestDispatcher())

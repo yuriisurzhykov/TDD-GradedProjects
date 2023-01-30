@@ -48,6 +48,7 @@ dependencies {
     implementation(Dependencies.Android.fragmentKtx)
     kapt(Dependencies.DI.hiltCompiler)
     testImplementation(Dependencies.Testing.JUnit4)
+    testImplementation(Dependencies.Testing.coroutinesTest)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)
     androidTestImplementation(Dependencies.Testing.espressoCore)
 }
