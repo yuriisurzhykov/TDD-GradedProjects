@@ -17,7 +17,7 @@ android {
         minSdk = ProjectConfigs.minSdkVersion
         targetSdk = ProjectConfigs.targetSdkVersion
         testApplicationId = "${ProjectConfigs.applicationId}.palindrome"
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "${ProjectConfigs.applicationId}.palindrome.CustomTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -51,4 +51,6 @@ dependencies {
     testImplementation(Dependencies.Testing.coroutinesTest)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)
     androidTestImplementation(Dependencies.Testing.espressoCore)
+    androidTestImplementation(Dependencies.Testing.hiltTesting)
+    kaptAndroidTest(Dependencies.DI.hiltCompiler)
 }

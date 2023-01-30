@@ -20,6 +20,6 @@
     <string name="button_check_palindrome">Check it!</string>
 
     <string name="message_input_text_palindrome">This text is palindrome 👌!</string>
-    <string name="message_input_text_not_palindrome">This text is palindrome 👎!</string>
+    <string name="message_input_text_not_palindrome">This text is not a palindrome 👎!</string>
     <string name="message_input_text_empty">Nothing to check 👁️!</string>
 </resources>

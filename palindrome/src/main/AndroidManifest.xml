@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <application>
+    <application
+        android:theme="@style/Theme.MaterialComponents.NoActionBar.Bridge"
+        tools:replace="android:theme">
         <activity
             android:name=".presentation.PalindromeCheckActivity"
             android:windowSoftInputMode="adjustResize|stateHidden" />
