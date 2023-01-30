@@ -1,4 +1,4 @@
-package com.yuriisurzhykov.tddgraded.presentation.viewsktx
+package com.yuriisurzhykov.tddgraded.presentation.delegates.viewsktx
 
 import kotlin.properties.ReadOnlyProperty
 
