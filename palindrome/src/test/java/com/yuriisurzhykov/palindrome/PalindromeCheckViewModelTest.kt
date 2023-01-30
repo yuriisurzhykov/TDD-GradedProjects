@@ -19,20 +19,29 @@ package com.yuriisurzhykov.palindrome
 import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.palindrome.data.PalindromeInputEntity
 import com.yuriisurzhykov.palindrome.domain.IPalindromeCheckUseCase
+import com.yuriisurzhykov.palindrome.domain.PalindromeCheckCommunication
 import com.yuriisurzhykov.palindrome.presentation.PalindromeCheckViewModel
 import com.yuriisurzhykov.tddgraded.core.Communication
 import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import junit.framework.TestCase.assertTrue
+import org.junit.Before
 import org.junit.Test
 import kotlin.properties.Delegates.notNull
 
 class PalindromeCheckViewModelTest {
 
+    private var dispatchers: Dispatchers by notNull()
+
+    @Before
+    fun initialize() {
+        dispatchers = FakeDispatchers()
+    }
+
     @Test
     fun `check view model input error`() {
         val useCase = FakePalindromeCheckUseCase(IPalindromeCheckState.InputError())
         val communication = FakePalindromeCommunication()
-        val viewModel = PalindromeCheckViewModel(useCase, communication, Dispatchers.Base())
+        val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("madam"))
         assertTrue(communication.checkIsState(IPalindromeCheckState.InputError()))
         assertTrue(communication.checkCallCount(1))
@@ -45,7 +54,7 @@ class PalindromeCheckViewModelTest {
     fun `check view model success`() {
         val useCase = FakePalindromeCheckUseCase(IPalindromeCheckState.Success())
         val communication = FakePalindromeCommunication()
-        val viewModel = PalindromeCheckViewModel(useCase, communication, Dispatchers.Base())
+        val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("madam"))
         assertTrue(communication.checkIsState(IPalindromeCheckState.Success()))
         assertTrue(communication.checkCallCount(1))
@@ -55,7 +64,7 @@ class PalindromeCheckViewModelTest {
     fun `check view model have check error`() {
         val useCase = FakePalindromeCheckUseCase(IPalindromeCheckState.CheckError())
         val communication = FakePalindromeCommunication()
-        val viewModel = PalindromeCheckViewModel(useCase, communication, Dispatchers.Base())
+        val viewModel = PalindromeCheckViewModel(useCase, communication, dispatchers)
         viewModel.applyInput(PalindromeInputEntity("asdjkdfjksdfg"))
         assertTrue(communication.checkIsState(IPalindromeCheckState.CheckError()))
         assertTrue(communication.checkCallCount(1))
@@ -69,7 +78,8 @@ private class FakePalindromeCheckUseCase constructor(
     override suspend fun check(input: PalindromeInputEntity) = checkState
 }
 
-private class FakePalindromeCommunication : Communication.Abstract<IPalindromeCheckState>() {
+private class FakePalindromeCommunication : Communication.Abstract<IPalindromeCheckState>(),
+    PalindromeCheckCommunication {
 
     private var value: IPalindromeCheckState by notNull()
     private var callCount: Int = 0
@@ -83,3 +93,8 @@ private class FakePalindromeCommunication : Communication.Abstract<IPalindromeCh
 
     fun checkCallCount(count: Int) = callCount == count
 }
+
+private class FakeDispatchers : Dispatchers.Abstract(
+    uiDispatcher = kotlinx.coroutines.Dispatchers.IO,
+    backgroundDispatcher = kotlinx.coroutines.Dispatchers.IO,
+)

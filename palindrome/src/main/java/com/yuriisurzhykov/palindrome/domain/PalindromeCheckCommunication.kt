@@ -19,4 +19,7 @@ package com.yuriisurzhykov.palindrome.domain
 import com.yuriisurzhykov.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.tddgraded.core.Communication
 
-class PalindromeCheckCommunication : Communication.Abstract<IPalindromeCheckState>()
+interface PalindromeCheckCommunication :
+    Communication.Put<IPalindromeCheckState>, Communication.Observe<IPalindromeCheckState> {
+    class Base : Communication.Abstract<IPalindromeCheckState>(), PalindromeCheckCommunication
+}
