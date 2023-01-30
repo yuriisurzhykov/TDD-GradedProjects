@@ -11,7 +11,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Get Tag
         id: var
-        run: echo ::set-output name=tag::${GITHUB_REF#refs/*/}
+        run: echo "tag=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
       - name: Configure Keystore
         run: |
