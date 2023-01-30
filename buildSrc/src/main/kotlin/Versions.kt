@@ -15,6 +15,7 @@ object Versions {
         const val JUnit4 = "4.13.2"
         const val androidJUnit4 = "1.1.5"
         const val espressoCore = "3.5.1"
+        const val coroutinesTest = "1.6.4"
     }
 
     object DI {
