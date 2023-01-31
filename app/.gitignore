@@ -1,3 +1,4 @@
 /build
+/release/
 signing.properties
 keystore.jks
