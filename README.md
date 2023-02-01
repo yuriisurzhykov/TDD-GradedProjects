@@ -1,6 +1,6 @@
 <h1 align="center">TDD Graded Projects</h1>
-<p>In this repository there are a lot of separate project from a newbie level to an expert level.</p>
-<p>There will be 5 levels of difficulty. And on each of levels there will be 10 tasks/projects.</p>
+<p>In this repository there will be a lot of separate projects from a newbie level to an expert level.</p>
+<p>There will be 5 levels of difficulty. And on each of levels there will be 10 tasks/projects. Each project will be developed by TDD principle, using MVVM+Clean architecture, most latest tools for Android development such as Kotlin Coroutines, Gradle Kotlin DSL, Firebase services, Android Jetpack Components.</p>
 
 0. Newbie
 - [X] [Palindrome checker](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/palindrome_checker)
