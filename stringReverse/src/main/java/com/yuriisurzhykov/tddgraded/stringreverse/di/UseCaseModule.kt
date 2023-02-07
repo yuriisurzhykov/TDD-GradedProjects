@@ -14,35 +14,27 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.tddgraded.palindrome.di
+package com.yuriisurzhykov.tddgraded.stringreverse.di
 
-import com.yuriisurzhykov.tddgraded.palindrome.domain.IPalindromeCheckUseCase
-import com.yuriisurzhykov.tddgraded.palindrome.domain.IPunctuationRemove
-import com.yuriisurzhykov.tddgraded.palindrome.domain.PalindromeCheckCommunication
-import com.yuriisurzhykov.tddgraded.core.Dispatchers
+import com.yuriisurzhykov.tddgraded.stringreverse.data.StringReverseCommunication
+import com.yuriisurzhykov.tddgraded.stringreverse.domain.IStringReverseUseCase
+import com.yuriisurzhykov.tddgraded.stringreverse.domain.ManualStringReverseUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object UseCaseModule {
 
     @Provides
-    fun providePunctuationRemover(): IPunctuationRemove {
-        return IPunctuationRemove.Base()
+    fun providesStringReverseUseCase(): IStringReverseUseCase {
+        return ManualStringReverseUseCase()
     }
 
     @Provides
-    @Singleton
-    fun providePalindromeCheckUseCase(remover: IPunctuationRemove): IPalindromeCheckUseCase {
-        return IPalindromeCheckUseCase.Base(remover)
-    }
-
-    @Provides
-    fun providePalindromeCheckCommunication(): PalindromeCheckCommunication {
-        return PalindromeCheckCommunication.Base()
+    fun providesStringReverseCommunication(): StringReverseCommunication {
+        return StringReverseCommunication.Base()
     }
 }

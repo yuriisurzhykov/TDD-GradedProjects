@@ -15,8 +15,10 @@ abstract class AbstractToolbarActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_toolbar)
         setSupportActionBar(findViewById(R.id.toolbar))
-        supportFragmentManager.addOnBackStackChangedListener(
-            ActivityToolbarBackStackListener(activityToolbarSource)
-        )
+        val backStackListener = ActivityToolbarBackStackListener(activityToolbarSource)
+        supportFragmentManager.addOnBackStackChangedListener(backStackListener)
+        if (savedInstanceState != null) {
+            backStackListener.onBackStackChanged()
+        }
     }
 }
