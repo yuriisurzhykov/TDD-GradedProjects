@@ -16,22 +16,25 @@
 
 package com.yuriisurzhykov.tddgraded.stringreverse
 
+import com.yuriisurzhykov.tddgraded.stringreverse.domain.IStringReverseUseCase
+import com.yuriisurzhykov.tddgraded.stringreverse.domain.ManualStringReverseUseCase
+import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
 class StringReverseUseCaseTest {
 
     @Test
-    fun `test reverse string with normal length`() {
-        val useCase = StringReverseUseCase.Base()
+    fun `test reverse string with normal length`() = runBlocking {
+        val useCase: IStringReverseUseCase = ManualStringReverseUseCase()
         val testData = "Some string for test!"
         val expected = "!tset rof gnirts eomS"
         assertEquals(expected, useCase.reverse(testData))
     }
 
     @Test
-    fun `test reverse string with empty string`() {
-        val useCase = StringReverseUseCase.Base()
+    fun `test reverse string with empty string`() = runBlocking {
+        val useCase: IStringReverseUseCase = ManualStringReverseUseCase()
         val testData = ""
         val expected = ""
         assertEquals(expected, useCase.reverse(testData))
