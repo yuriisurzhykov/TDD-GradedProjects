@@ -1,0 +1,1 @@
+Prime number is a positive integer number that have no positive integer divisors other than 1 and itself.
