@@ -17,5 +17,7 @@
 package com.yuriisurzhykov.tddgraded.stringreverse.domain
 
 class ManualStringReverseUseCase : IStringReverseUseCase {
-    override suspend fun reverse(input: String): String = ""
+    override suspend fun reverse(input: String): String {
+        return input.reversed()
+    }
 }

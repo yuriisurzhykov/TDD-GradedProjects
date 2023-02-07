@@ -58,6 +58,7 @@ dependencies {
     api(Dependencies.Android.materialComponents)
     api(Dependencies.DI.hilt)
     api(Dependencies.Android.viewmodelKtx)
+    api(Dependencies.Android.fragmentKtx)
     kapt(Dependencies.DI.hiltCompiler)
     implementation(project(":core"))
     implementation(project(":presentation"))

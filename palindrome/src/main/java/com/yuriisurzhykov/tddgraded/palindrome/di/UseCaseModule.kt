@@ -42,11 +42,6 @@ object UseCaseModule {
     }
 
     @Provides
-    fun provideDispatchers(): Dispatchers {
-        return Dispatchers.Base()
-    }
-
-    @Provides
     fun providePalindromeCheckCommunication(): PalindromeCheckCommunication {
         return PalindromeCheckCommunication.Base()
     }

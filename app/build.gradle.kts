@@ -59,6 +59,8 @@ android {
 
 dependencies {
     implementation(project(":palindrome"))
+    implementation(project(":stringReverse"))
+    implementation(project(":core"))
 
     implementation(Dependencies.Android.androidCoreKtx)
     implementation(Dependencies.Android.appCompat)

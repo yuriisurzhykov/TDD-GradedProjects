@@ -14,21 +14,19 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.tddgraded.stringreverse.data
+package com.yuriisurzhykov.tddgraded.di
 
-import android.widget.TextView
-import androidx.annotation.CallSuper
+import com.yuriisurzhykov.tddgraded.core.Dispatchers
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-interface IStringReverseState {
-
-    fun apply(textView: TextView)
-
-    abstract class Abstract(private val text: String) : IStringReverseState {
-        @CallSuper
-        override fun apply(textView: TextView) {
-            textView.text = text
-        }
+@Module
+@InstallIn(SingletonComponent::class)
+object CommonProviders {
+    @Provides
+    fun providesDispatchers(): Dispatchers {
+        return Dispatchers.Base()
     }
-
-    data class Success(private val reverseString: String) : Abstract(reverseString)
 }

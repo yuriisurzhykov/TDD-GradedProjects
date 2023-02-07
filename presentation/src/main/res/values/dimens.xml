@@ -14,11 +14,9 @@
   ~ limitations under the License.
   -->
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <application>
-        <activity
-            android:name="com.yuriisurzhykov.tddgraded.stringreverse.presentation.StringReverseActivity"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-    </application>
-</manifest>
+<resources>
+    <dimen name="margin_default">20dp</dimen>
+    <dimen name="margin_small">12dp</dimen>
+    <dimen name="padding_small">8dp</dimen>
+    <dimen name="padding_default">16dp</dimen>
+</resources>

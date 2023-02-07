@@ -34,4 +34,6 @@ interface StringReverseCommunication : Communication.Observe<IStringReverseState
             liveData.observe(owner, observer)
         }
     }
+
+    class Base: Abstract()
 }

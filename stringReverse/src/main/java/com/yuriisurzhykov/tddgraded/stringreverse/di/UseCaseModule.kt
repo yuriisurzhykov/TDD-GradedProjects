@@ -14,31 +14,27 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.tddgraded.stringreverse
+package com.yuriisurzhykov.tddgraded.stringreverse.di
 
+import com.yuriisurzhykov.tddgraded.stringreverse.data.StringReverseCommunication
 import com.yuriisurzhykov.tddgraded.stringreverse.domain.IStringReverseUseCase
 import com.yuriisurzhykov.tddgraded.stringreverse.domain.ManualStringReverseUseCase
-import kotlinx.coroutines.runBlocking
-import org.junit.Assert.assertEquals
-import org.junit.Test
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 
-class StringReverseUseCaseTest {
+@Module
+@InstallIn(SingletonComponent::class)
+object UseCaseModule {
 
-    @Test
-    fun `test reverse string with normal length`() = runBlocking {
-        val useCase: IStringReverseUseCase = ManualStringReverseUseCase()
-        val testData = "Some string for test!"
-        val expected = "!tset rof gnirts emoS"
-        assertEquals(expected, useCase.reverse(testData))
+    @Provides
+    fun providesStringReverseUseCase(): IStringReverseUseCase {
+        return ManualStringReverseUseCase()
     }
 
-    @Test
-    fun `test reverse string with empty string`() = runBlocking {
-        val useCase: IStringReverseUseCase = ManualStringReverseUseCase()
-        val testData = ""
-        val expected = ""
-        assertEquals(expected, useCase.reverse(testData))
+    @Provides
+    fun providesStringReverseCommunication(): StringReverseCommunication {
+        return StringReverseCommunication.Base()
     }
-
-
 }
