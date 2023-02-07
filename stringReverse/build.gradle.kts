@@ -33,7 +33,7 @@ android {
         minSdk = ProjectConfigs.minSdkVersion
         targetSdk = ProjectConfigs.targetSdkVersion
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "${ProjectConfigs.applicationId}.stringreverse.CustomTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
@@ -66,4 +66,7 @@ dependencies {
     testImplementation(Dependencies.Testing.coroutinesTest)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)
     androidTestImplementation(Dependencies.Testing.espressoCore)
+    androidTestImplementation(Dependencies.Testing.hiltTesting)
+    androidTestImplementation(Dependencies.Testing.coroutinesTest)
+    kaptAndroidTest(Dependencies.DI.hiltCompiler)
 }

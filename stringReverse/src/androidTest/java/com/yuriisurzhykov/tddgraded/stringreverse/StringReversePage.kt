@@ -16,25 +16,10 @@
 
 package com.yuriisurzhykov.tddgraded.stringreverse
 
-import androidx.test.platform.app.InstrumentationRegistry
-import androidx.test.ext.junit.runners.AndroidJUnit4
+import com.yuriisurzhykov.tddgraded.stringreverse.base.Page
 
-import org.junit.Test
-import org.junit.runner.RunWith
+class StringReversePage : Page() {
 
-import org.junit.Assert.*
-
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * See [testing documentation](http://d.android.com/tools/testing).
- */
-@RunWith(AndroidJUnit4::class)
-class ExampleInstrumentedTest {
-    @Test
-    fun useAppContext() {
-        // Context of the app under test.
-        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-        assertEquals("com.yuriisurzhykov.tddgraded.stringreverse.test", appContext.packageName)
-    }
+    val input = R.id.text_input.view()
+    val responeText = R.id.text_response.view()
 }
