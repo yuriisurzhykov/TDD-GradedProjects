@@ -11,3 +11,5 @@ number is prime.
     a) The text must be the number user entered and green check emoji.
 4. If user entered not prime number, the the text should appear under the text input:
     a) The text must be the number user entered and red cross emoji.
+5. If user rotate his screen, or move application to background then the the entered
+text and result must stay as before rotation.
