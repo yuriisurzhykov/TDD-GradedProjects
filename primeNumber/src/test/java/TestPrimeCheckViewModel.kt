@@ -3,9 +3,12 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.yuriisurzhykov.tddgraded.core.Dispatchers
+import com.yuriisurzhykov.tddgraded.primenumber.data.PrimeNumberCheckResult
+import com.yuriisurzhykov.tddgraded.primenumber.domain.PrimeNumberCheckCommunication
+import com.yuriisurzhykov.tddgraded.primenumber.domain.PrimeNumberCheckUseCase
+import com.yuriisurzhykov.tddgraded.primenumber.presentation.PrimeCheckViewModel
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.Assert.assertEquals
-import org.junit.Before
 import org.junit.Test
 
 class TestPrimeCheckViewModel {
@@ -15,12 +18,14 @@ class TestPrimeCheckViewModel {
         val useCase = PrimeNumberCheckUseCase.Base()
         val dispatchers = TestDispatchers()
         val communication = TestPrimeCheckCommunication()
-        viewModel = PrimeCheckViewModel(
+        val stringParser = StringToIntParser.Base()
+        val viewModel = PrimeCheckViewModel(
             primeCheckUseCase = useCase,
             dispatchers = dispatchers,
-            communication = communication
+            communication = communication,
+            stringParser = stringParser
         )
-        val testData = 12
+        val testData = "12"
         val expected = PrimeNumberCheckResult.NotPrime()
         val observer1 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer1)
@@ -39,13 +44,13 @@ class TestPrimeCheckViewModel {
         val useCase = PrimeNumberCheckUseCase.Base()
         val dispatchers = TestDispatchers()
         val communication = TestPrimeCheckCommunication()
-        viewModel = PrimeCheckViewModel(
+        val viewModel = PrimeCheckViewModel(
             primeCheckUseCase = useCase,
             dispatchers = dispatchers,
-            communication = communication
+            communication = communication,
+            stringParser = stringParser
         )
-        var testData: Long = Integer.MAX_VALUE.toLong()
-        testData += 100
+        val testData = "1891238912371237"
         val expected = PrimeNumberCheckResult.InvalidRange()
         val observer1 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer1)
@@ -64,12 +69,13 @@ class TestPrimeCheckViewModel {
         val useCase = PrimeNumberCheckUseCase.Base()
         val dispatchers = TestDispatchers()
         val communication = TestPrimeCheckCommunication()
-        viewModel = PrimeCheckViewModel(
+        val viewModel = PrimeCheckViewModel(
             primeCheckUseCase = useCase,
             dispatchers = dispatchers,
-            communication = communication
+            communication = communication,
+            stringParser = stringParser
         )
-        val testData = 3
+        val testData = "3"
         val expected = PrimeNumberCheckResult.Prime()
         val observer1 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer1)
@@ -123,7 +129,7 @@ private class FakeLifecycleOwner(private val state: Lifecycle.State): LifecycleO
 
 private class FakePrimeNumberObserver: Observer<PrimeNumberCheckResult> {
 
-    private lateinit var value: PrimeNumberCheckResult?
+    private var value: PrimeNumberCheckResult? = null
 
     override fun onChanged(t: PrimeNumberCheckResult?) {
         value = t
