@@ -6,6 +6,7 @@ import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import com.yuriisurzhykov.tddgraded.primenumber.data.PrimeNumberCheckResult
 import com.yuriisurzhykov.tddgraded.primenumber.domain.PrimeNumberCheckCommunication
 import com.yuriisurzhykov.tddgraded.primenumber.domain.PrimeNumberCheckUseCase
+import com.yuriisurzhykov.tddgraded.primenumber.domain.StringToIntParser
 import com.yuriisurzhykov.tddgraded.primenumber.presentation.PrimeCheckViewModel
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.Assert.assertEquals
@@ -44,6 +45,7 @@ class TestPrimeCheckViewModel {
         val useCase = PrimeNumberCheckUseCase.Base()
         val dispatchers = TestDispatchers()
         val communication = TestPrimeCheckCommunication()
+        val stringParser = StringToIntParser.Base()
         val viewModel = PrimeCheckViewModel(
             primeCheckUseCase = useCase,
             dispatchers = dispatchers,
@@ -69,6 +71,7 @@ class TestPrimeCheckViewModel {
         val useCase = PrimeNumberCheckUseCase.Base()
         val dispatchers = TestDispatchers()
         val communication = TestPrimeCheckCommunication()
+        val stringParser = StringToIntParser.Base()
         val viewModel = PrimeCheckViewModel(
             primeCheckUseCase = useCase,
             dispatchers = dispatchers,
@@ -94,10 +97,10 @@ class TestPrimeCheckViewModel {
 private class TestDispatchers :
     Dispatchers.Abstract(UnconfinedTestDispatcher(), UnconfinedTestDispatcher())
 
-private class TestPrimeCheckCommunication: PrimeNumberCheckCommunication {
+private class TestPrimeCheckCommunication : PrimeNumberCheckCommunication {
 
     private var callCount: Int = 0
-    private lateinit var stateResult: PrimeNumberCheckResult
+    private var stateResult: PrimeNumberCheckResult? = null
 
     override fun put(result: PrimeNumberCheckResult) {
         callCount++
@@ -105,6 +108,7 @@ private class TestPrimeCheckCommunication: PrimeNumberCheckCommunication {
     }
 
     override fun observe(owner: LifecycleOwner, observer: Observer<PrimeNumberCheckResult>) {
+        observer.onChanged(stateResult)
     }
 
     fun getStateResult() = stateResult
@@ -112,7 +116,7 @@ private class TestPrimeCheckCommunication: PrimeNumberCheckCommunication {
     fun getCallCounts() = callCount
 }
 
-private class FakeLifecycleOwner(private val state: Lifecycle.State): LifecycleOwner {
+private class FakeLifecycleOwner(private val state: Lifecycle.State) : LifecycleOwner {
     override fun getLifecycle(): Lifecycle {
         return object : Lifecycle() {
             override fun addObserver(observer: LifecycleObserver) {
@@ -127,7 +131,7 @@ private class FakeLifecycleOwner(private val state: Lifecycle.State): LifecycleO
     }
 }
 
-private class FakePrimeNumberObserver: Observer<PrimeNumberCheckResult> {
+private class FakePrimeNumberObserver : Observer<PrimeNumberCheckResult> {
 
     private var value: PrimeNumberCheckResult? = null
 
