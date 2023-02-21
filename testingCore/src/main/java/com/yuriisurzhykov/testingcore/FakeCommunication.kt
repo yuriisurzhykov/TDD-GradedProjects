@@ -4,7 +4,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.yuriisurzhykov.tddgraded.core.Communication
 
-interface FakeCommunication<T : Any> : Communication.Put<T>, Communication.Observe<T> {
+interface FakeCommunication<T : Any> : Communication.Put<T>, Communication.Observe<T>,
+    Communication.Post<T> {
 
     abstract class Abstract<T : Any> : FakeCommunication<T> {
 
@@ -21,6 +22,12 @@ interface FakeCommunication<T : Any> : Communication.Put<T>, Communication.Obser
         override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
             observer.onChanged(currentValue)
             observers.add(observer)
+        }
+
+        override fun post(value: T) {
+            currentValue = value
+            callCounts++
+            observers.forEach { it.onChanged(value) }
         }
 
         fun getCallCounts() = callCounts
