@@ -5,7 +5,7 @@
 0. Newbie
 - [X] [Palindrome checker](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/palindrome_checker)
 - [X] [Manual String Reverse](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/string_reverse)
-- [ ] Check if Prime Number
+- [X] [Check if Prime Number](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/prime_number)
 - [ ] Tic Tac Toe Game
 - [ ] Fibonacci Generator
 - [ ] Decimal to Binary
