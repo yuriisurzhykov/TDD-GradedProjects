@@ -1,14 +1,13 @@
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.Observer
-import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import com.yuriisurzhykov.tddgraded.primenumber.data.PrimeNumberCheckResult
 import com.yuriisurzhykov.tddgraded.primenumber.domain.PrimeNumberCheckCommunication
 import com.yuriisurzhykov.tddgraded.primenumber.domain.PrimeNumberCheckUseCase
 import com.yuriisurzhykov.tddgraded.primenumber.domain.StringToIntParser
 import com.yuriisurzhykov.tddgraded.primenumber.presentation.PrimeCheckViewModel
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import com.yuriisurzhykov.testingcore.FakeCommunication
+import com.yuriisurzhykov.testingcore.FakeDispatchers
+import com.yuriisurzhykov.testingcore.FakeLifecycleOwner
+import com.yuriisurzhykov.testingcore.FakeObserver
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -17,7 +16,7 @@ class TestPrimeCheckViewModel {
     @Test
     fun test_initialize_viewModel_get_result_and_recreate() {
         val useCase = PrimeNumberCheckUseCase.Base()
-        val dispatchers = TestDispatchers()
+        val dispatchers = FakeDispatchers()
         val communication = TestPrimeCheckCommunication()
         val stringParser = StringToIntParser.Base()
         val viewModel = PrimeCheckViewModel(
@@ -43,7 +42,7 @@ class TestPrimeCheckViewModel {
     @Test
     fun test_initialize_viewModel_pass_invalid_data() {
         val useCase = PrimeNumberCheckUseCase.Base()
-        val dispatchers = TestDispatchers()
+        val dispatchers = FakeDispatchers()
         val communication = TestPrimeCheckCommunication()
         val stringParser = StringToIntParser.Base()
         val viewModel = PrimeCheckViewModel(
@@ -69,7 +68,7 @@ class TestPrimeCheckViewModel {
     @Test
     fun test_viewModel_with_pass_correct_data() {
         val useCase = PrimeNumberCheckUseCase.Base()
-        val dispatchers = TestDispatchers()
+        val dispatchers = FakeDispatchers()
         val communication = TestPrimeCheckCommunication()
         val stringParser = StringToIntParser.Base()
         val viewModel = PrimeCheckViewModel(
@@ -94,53 +93,7 @@ class TestPrimeCheckViewModel {
 
 }
 
-private class TestDispatchers :
-    Dispatchers.Abstract(UnconfinedTestDispatcher(), UnconfinedTestDispatcher())
+private class TestPrimeCheckCommunication : FakeCommunication.Abstract<PrimeNumberCheckResult>(),
+    PrimeNumberCheckCommunication
 
-private class TestPrimeCheckCommunication : PrimeNumberCheckCommunication {
-
-    private var callCount: Int = 0
-    private var stateResult: PrimeNumberCheckResult? = null
-    private val observers = mutableListOf<Observer<PrimeNumberCheckResult>>()
-
-    override fun put(result: PrimeNumberCheckResult) {
-        callCount++
-        stateResult = result
-        observers.forEach { it.onChanged(result) }
-    }
-
-    override fun observe(owner: LifecycleOwner, observer: Observer<PrimeNumberCheckResult>) {
-        observers.add(observer)
-        observer.onChanged(stateResult)
-    }
-
-    fun getStateResult() = stateResult
-
-    fun getCallCounts() = callCount
-}
-
-private class FakeLifecycleOwner(private val state: Lifecycle.State) : LifecycleOwner {
-    override fun getLifecycle(): Lifecycle {
-        return object : Lifecycle() {
-            override fun addObserver(observer: LifecycleObserver) {
-
-            }
-
-            override fun removeObserver(observer: LifecycleObserver) {
-            }
-
-            override fun getCurrentState(): State = state
-        }
-    }
-}
-
-private class FakePrimeNumberObserver : Observer<PrimeNumberCheckResult> {
-
-    private var value: PrimeNumberCheckResult? = null
-
-    override fun onChanged(t: PrimeNumberCheckResult?) {
-        value = t
-    }
-
-    fun getCurrentValue() = value
-}
+private class FakePrimeNumberObserver : FakeObserver.Abstract<PrimeNumberCheckResult>()

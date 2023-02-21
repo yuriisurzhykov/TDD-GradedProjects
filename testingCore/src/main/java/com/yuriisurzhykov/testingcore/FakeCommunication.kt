@@ -22,5 +22,8 @@ interface FakeCommunication<T : Any> : Communication.Put<T>, Communication.Obser
             observer.onChanged(currentValue)
             observers.add(observer)
         }
+
+        fun getCallCounts() = callCounts
+        fun getStateResult() = currentValue
     }
 }
