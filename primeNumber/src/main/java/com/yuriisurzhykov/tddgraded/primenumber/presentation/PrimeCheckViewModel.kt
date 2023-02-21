@@ -29,7 +29,7 @@ class PrimeCheckViewModel @Inject constructor(
         dispatchers.launchBackground(viewModelScope) {
             val integerValue = stringParser.parse(number)
             val checkingResult = primeCheckUseCase.isPrimeNumber(integerValue.toLong())
-            communication.put(checkingResult)
+            communication.post(checkingResult)
         }
     }
 }
