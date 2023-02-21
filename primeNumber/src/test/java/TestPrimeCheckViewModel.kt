@@ -101,13 +101,16 @@ private class TestPrimeCheckCommunication : PrimeNumberCheckCommunication {
 
     private var callCount: Int = 0
     private var stateResult: PrimeNumberCheckResult? = null
+    private val observers = mutableListOf<Observer<PrimeNumberCheckResult>>()
 
     override fun put(result: PrimeNumberCheckResult) {
         callCount++
         stateResult = result
+        observers.forEach { it.onChanged(result) }
     }
 
     override fun observe(owner: LifecycleOwner, observer: Observer<PrimeNumberCheckResult>) {
+        observers.add(observer)
         observer.onChanged(stateResult)
     }
 
