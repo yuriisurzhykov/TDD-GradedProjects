@@ -9,7 +9,7 @@ interface FakeObserver<T : Any> : Observer<T> {
         private var value: T? = null
         private var callCount: Int = 0
 
-        override fun onChanged(t: T) {
+        override fun onChanged(t: T?) {
             value = t
             callCount++
         }
