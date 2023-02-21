@@ -4,8 +4,11 @@
 
 0. Newbie
 - [X] [Palindrome checker](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/palindrome_checker)
+  - Release: [feature-palindrome](https://github.com/yuriysurzhikov/TDD-GradedProjects/releases/tag/feature-palindrome)
 - [X] [Manual String Reverse](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/string_reverse)
+  - Release: [feature-string-reverse](https://github.com/yuriysurzhikov/TDD-GradedProjects/releases/tag/feature-string-reverse)
 - [X] [Check if Prime Number](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/prime_number)
+  - Release: [feature-prime-number-check](https://github.com/yuriysurzhikov/TDD-GradedProjects/releases/tag/feature-prime-number-check)
 - [ ] Tic Tac Toe Game
 - [ ] Fibonacci Generator
 - [ ] Decimal to Binary
