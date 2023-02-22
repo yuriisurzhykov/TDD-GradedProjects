@@ -6,7 +6,7 @@ plays for zero. </h4>
 contract. Winning combinations are either in a row of three identical symbols, or diagonally. </h4>
 
 ## Technical task:
-    It is necessary to implement applications with the ability to play via Bluetooth for two players.
+It is necessary to implement applications with the ability to play via Bluetooth for two players.
 
 0. The application must have a start screen with buttons: "game via bluetooth", "game with a
    computer", "game on one device".
