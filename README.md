@@ -10,6 +10,7 @@
 - [X] [Check if Prime Number](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/prime_number)
   - Release: [feature-prime-number-check](https://github.com/yuriysurzhikov/TDD-GradedProjects/releases/tag/feature-prime-number-check)
 - [ ] Tic Tac Toe Game
+  - Requirements: [en](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/tictactoe/tictactoe/requirements_tictactoe_en.md), [ru](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/tictactoe/tictactoe/requirements_tictactoe_ru.md)
 - [ ] Fibonacci Generator
 - [ ] Decimal to Binary
 - [ ] Number Guessing Game
