@@ -6,9 +6,10 @@
 - [X] [Palindrome checker](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/palindrome_checker)
   - Release: [feature-palindrome](https://github.com/yuriysurzhikov/TDD-GradedProjects/releases/tag/feature-palindrome)
 - [X] [Manual String Reverse](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/string_reverse)
+  - Requirements: [en](https://github.com/yuriysurzhikov/TDD-GradedProjects/blob/master/stringReverse/requirement_string_reverse.md)
   - Release: [feature-string-reverse](https://github.com/yuriysurzhikov/TDD-GradedProjects/releases/tag/feature-string-reverse)
 - [X] [Check if Prime Number](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/prime_number)
-  - Requirements: [en](https://github.com/yuriysurzhikov/TDD-GradedProjects/blob/master/primeNumber/requirement_prime_number.txt)
+  - Requirements: [en](https://github.com/yuriysurzhikov/TDD-GradedProjects/blob/master/primeNumber/requirement_prime_number.md)
   - Release: [feature-prime-number-check](https://github.com/yuriysurzhikov/TDD-GradedProjects/releases/tag/feature-prime-number-check)
 - [ ] Tic Tac Toe Game
   - Requirements: [en](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/tictactoe/tictactoe/requirements_tictactoe_en.md), [ru](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/tictactoe/tictactoe/requirements_tictactoe_ru.md)
