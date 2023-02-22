@@ -4,6 +4,7 @@
 
 0. Newbie
 - [X] [Palindrome checker](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/palindrome_checker)
+  - Requirements: [en](https://github.com/yuriysurzhikov/TDD-GradedProjects/blob/master/palindrome/requirement_palindrome.md)
   - Release: [feature-palindrome](https://github.com/yuriysurzhikov/TDD-GradedProjects/releases/tag/feature-palindrome)
 - [X] [Manual String Reverse](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/string_reverse)
   - Requirements: [en](https://github.com/yuriysurzhikov/TDD-GradedProjects/blob/master/stringReverse/requirement_string_reverse.md)
