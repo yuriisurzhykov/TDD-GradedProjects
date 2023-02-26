@@ -1,6 +1,12 @@
 plugins {
     id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id(Plugins.hilt)
+    id(Plugins.kotlinKapt)
+    id(Plugins.kotlinAndroid)
+}
+
+kapt {
+    correctErrorTypes = true
 }
 
 android {
@@ -10,17 +16,10 @@ android {
     defaultConfig {
         minSdk = ProjectConfigs.minSdkVersion
         targetSdk = ProjectConfigs.targetSdkVersion
-
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.yuriisurzhykov.testingcore.android.CustomTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -41,4 +40,7 @@ dependencies {
     api(Dependencies.Testing.coroutinesTest)
     api(Dependencies.Testing.androidJUnit4)
     api(Dependencies.Testing.espressoCore)
+    api(Dependencies.Testing.hiltTesting)
+    api(Dependencies.DI.hilt)
+    kaptAndroidTest(Dependencies.DI.hiltCompiler)
 }

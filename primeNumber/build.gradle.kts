@@ -33,7 +33,7 @@ android {
         minSdk = ProjectConfigs.minSdkVersion
         targetSdk = ProjectConfigs.targetSdkVersion
 
-        testInstrumentationRunner = "${ProjectConfigs.applicationId}.primenumber.CustomTestRunner"
+        testInstrumentationRunner = "com.yuriisurzhykov.testingcore.android.HiltCustomTestRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
