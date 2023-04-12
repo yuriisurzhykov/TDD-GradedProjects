@@ -48,7 +48,7 @@
 
 3. Advanced
 - [ ] Realtime Chat
-- [ ] Social Network
+- [ ] Social Network (the name will be inTouch)
 - [ ] E-Commerce App
 - [ ] Web Browser
 - [ ] Online Scribble Game
