@@ -1,9 +1,24 @@
 package com.yuriisurzhykov.tddgraded.presentation
 
+import android.os.Bundle
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 
 abstract class AbstractFragmentActivity : AbstractToolbarActivity(), IFragmentActivity {
+
+    private val backPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            if (supportFragmentManager.backStackEntryCount == 1) {
+                finish()
+            }
+        }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        onBackPressedDispatcher.addCallback(this, backPressedCallback)
+    }
 
     override fun openFragment(fragment: Fragment, tag: Any) {
         openFragment(fragment, tag, false)
@@ -20,11 +35,5 @@ abstract class AbstractFragmentActivity : AbstractToolbarActivity(), IFragmentAc
                 .addToBackStack(tag.toString())
                 .commit()
         }
-    }
-
-    override fun onBackPressed() {
-        if (supportFragmentManager.backStackEntryCount == 1) {
-            finish()
-        } else super.onBackPressed()
     }
 }
