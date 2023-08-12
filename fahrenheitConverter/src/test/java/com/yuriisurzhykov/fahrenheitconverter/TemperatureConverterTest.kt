@@ -36,7 +36,7 @@ class TemperatureConverterTest {
 
     @Test
     fun `convert C above zero to F`() {
-        val converter = TemperatureConverter.FahrenheitToC()
+        val converter = TemperatureConverter.CToFahrenheit()
         val fTemperature = Temperature.Celsius(10)
         val expected = Temperature.Fahrenheit(50)
         val actual = converter.convert(fTemperature)
@@ -45,7 +45,7 @@ class TemperatureConverterTest {
 
     @Test
     fun `convert C below zero to F`() {
-        val converter = TemperatureConverter.FahrenheitToC()
+        val converter = TemperatureConverter.CToFahrenheit()
         val fTemperature = Temperature.Celsius(-5)
         val expected = Temperature.Fahrenheit(23)
         val actual = converter.convert(fTemperature)
@@ -54,7 +54,7 @@ class TemperatureConverterTest {
 
     @Test
     fun `convert C is zero to F`() {
-        val converter = TemperatureConverter.FahrenheitToC()
+        val converter = TemperatureConverter.CToFahrenheit()
         val fTemperature = Temperature.Celsius(0)
         val expected = Temperature.Fahrenheit(32)
         val actual = converter.convert(fTemperature)
