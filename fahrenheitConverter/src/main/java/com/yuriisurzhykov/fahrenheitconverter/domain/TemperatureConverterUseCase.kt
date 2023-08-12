@@ -2,11 +2,11 @@ package com.yuriisurzhykov.fahrenheitconverter.domain
 
 import com.yuriisurzhykov.fahrenheitconverter.data.Temperature
 
-interface TemperatureConverter {
+interface TemperatureConverterUseCase {
 
     fun convert(from: Temperature): Temperature
 
-    class FahrenheitToC : TemperatureConverter {
+    class FahrenheitToC : TemperatureConverterUseCase {
         override fun convert(from: Temperature): Temperature {
             val fDegree = from.map(Temperature.Mapper.Value)
             val cDegree = (fDegree.toFloat() - 32) * (5.0 / 9)
@@ -14,7 +14,7 @@ interface TemperatureConverter {
         }
     }
 
-    class CToFahrenheit : TemperatureConverter {
+    class CToFahrenheit : TemperatureConverterUseCase {
         override fun convert(from: Temperature): Temperature {
             val cDegree = from.map(Temperature.Mapper.Value)
             val fDegree = cDegree * (9.0 / 5) + 32
