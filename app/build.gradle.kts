@@ -62,6 +62,7 @@ dependencies {
     implementation(project(":stringReverse"))
     implementation(project(":core"))
     implementation(project(":primeNumber"))
+    implementation(project(":tictactoe"))
 
     implementation(Dependencies.Android.androidCoreKtx)
     implementation(Dependencies.Android.appCompat)

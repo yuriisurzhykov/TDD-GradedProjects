@@ -19,15 +19,13 @@ package com.yuriisurzhykov.tddgraded.presentation
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.yuriisurzhykov.tddgraded.palindrome.presentation.PalindromeCheckActivity
-import com.yuriisurzhykov.tddgraded.primenumber.presentation.PrimeNumberCheckActivity
-import com.yuriisurzhykov.tddgraded.stringreverse.presentation.StringReverseActivity
+import com.yuriisurzhykov.tddgraded.tictactoe.core.presentation.ActivityTicTacToe
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (savedInstanceState == null) {
-            startActivity(Intent(this, PrimeNumberCheckActivity::class.java).apply {
+            startActivity(Intent(this, ActivityTicTacToe::class.java).apply {
                 addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
             })
         }

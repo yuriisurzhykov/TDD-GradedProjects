@@ -37,7 +37,7 @@ class StringReverseFragment : AbstractStyleFragment(R.layout.fragment_string_rev
     private val inputField: EditText by findView(R.id.text_input)
     private val responseTextView: TextView by findView(R.id.text_response)
 
-    override fun getTitle(): String = getString(R.string.title_text_reverse_screen)
+    override fun getTitle(): String? = getString(R.string.title_text_reverse_screen)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

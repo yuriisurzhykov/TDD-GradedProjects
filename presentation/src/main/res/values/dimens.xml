@@ -19,4 +19,10 @@
     <dimen name="margin_small">12dp</dimen>
     <dimen name="padding_small">8dp</dimen>
     <dimen name="padding_default">16dp</dimen>
+
+    <dimen name="text_size_default">14sp</dimen>
+    <dimen name="text_size_medium">16sp</dimen>
+    <dimen name="text_size_big">20sp</dimen>
+    <dimen name="text_size_large">24sp</dimen>
+    <dimen name="text_size_huge">32sp</dimen>
 </resources>

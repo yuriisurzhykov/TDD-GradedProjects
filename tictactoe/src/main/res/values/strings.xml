@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="label_tic_tac_toe">Tic Tac Toe</string>
+    <string name="button_play">Play</string>
+</resources>

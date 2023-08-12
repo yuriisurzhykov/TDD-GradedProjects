@@ -21,7 +21,9 @@ class PrimeNumberCheckFragment : AbstractStyleFragment(R.layout.fragment_prime_c
     private val checkResult: TextView by findView(R.id.number_check_result)
     private val checkButton: Button by findView(R.id.check_button)
 
-    override fun getTitle(): String = resources.getString(R.string.title_screen_prime_check)
+    override fun getTitle(): String? = resources.getString(R.string.title_screen_prime_check)
+
+    override fun isCenterTitle(): Boolean = true
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
