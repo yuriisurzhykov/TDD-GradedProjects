@@ -39,7 +39,7 @@ class PalindromeCheckFragment : AbstractStyleFragment(R.layout.fragment_palindro
 
     private val viewModel: PalindromeCheckViewModel by viewModels()
 
-    override fun getTitle() = getString(R.string.title_palindrome_check_screen)
+    override fun getTitle(): String? = getString(R.string.title_palindrome_check_screen)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
