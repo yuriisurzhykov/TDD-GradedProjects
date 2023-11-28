@@ -53,9 +53,21 @@ jobs:
 
       - name: Build Changelog
         id: changelog
-        uses: ardalanamini/auto-changelog@v2
+        uses: ardalanamini/auto-changelog@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+          commit-types: |
+            feat: New Features
+            fix: Bug Fixes
+            build: Build System & Dependencies
+            perf: Performance Improvements
+            docs: Documentation
+            test: Tests
+            refactor: Refactors
+            chore: Chores
+            ci: CI
+            style: Code Style
+            revert: Reverts
 
       - name: Create Release
         id: create_release
