@@ -10,20 +10,23 @@ kapt {
 }
 
 android {
-    namespace = "${ProjectConfigs.applicationId}.palindrome"
+    namespace = "${ProjectConfigs.applicationId}.fibonacci"
     compileSdk = ProjectConfigs.compileSdkVersion
 
     defaultConfig {
         minSdk = ProjectConfigs.minSdkVersion
-        testApplicationId = "${ProjectConfigs.applicationId}.palindrome"
-        testInstrumentationRunner = "${ProjectConfigs.applicationId}.palindrome.CustomTestRunner"
+        testApplicationId = "${ProjectConfigs.applicationId}.fibonacci"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
         release {
             isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
