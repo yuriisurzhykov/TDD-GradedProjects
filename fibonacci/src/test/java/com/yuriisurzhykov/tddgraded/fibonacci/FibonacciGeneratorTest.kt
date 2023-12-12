@@ -17,14 +17,14 @@ class FibonacciGeneratorTest {
     }
 
     @Test(expected = IllegalStateException::class)
-    fun `generate sequence for zero`() = runBlocking {
+    fun `generate sequence for zero`(): Unit = runBlocking {
         val generator = FibonacciGenerator.Base()
 
         generator.generate(0)
     }
 
     @Test(expected = IllegalStateException::class)
-    fun `generateSequence for negative`() = runBlocking {
+    fun `generateSequence for negative`(): Unit = runBlocking {
         val generator = FibonacciGenerator.Base()
 
         generator.generate(-12)
