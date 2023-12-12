@@ -30,7 +30,7 @@ class FibonacciGeneratorTest {
         generator.generate(-12)
     }
 
-    @Test(expected = IllegalStateException::class)
+    @Test
     fun `generateSequence for positive`() = runBlocking {
         val generator = FibonacciGenerator.Base()
 
