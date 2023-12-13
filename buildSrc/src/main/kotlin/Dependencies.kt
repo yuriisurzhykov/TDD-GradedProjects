@@ -2,16 +2,15 @@ object Dependencies {
 
     object Android {
         const val androidCoreKtx = "androidx.core:core-ktx:${Versions.Android.androidCoreKtx}"
-        const val appCompat = "androidx.appcompat:appcompat:${Versions.Android.appCompat}"
         const val materialComponents =
             "com.google.android.material:material:${Versions.Android.materialComponents}"
         const val constraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.Android.constraintLayout}"
         const val fragmentKtx = "androidx.fragment:fragment-ktx:${Versions.Android.fragmentKtx}"
         const val lifecycleKtx = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.Android.lifecycleKtx}"
-        const val livedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Android.livedataKtx}"
+        const val livedataKtx = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.Android.lifecycleKtx}"
         const val collectionsKtx = "androidx.collection:collection-ktx:${Versions.Android.collectionsKtx}"
-        const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.viewmodelKtx}"
+        const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.Android.lifecycleKtx}"
     }
 
     object Testing {

@@ -34,7 +34,6 @@ dependencies {
     api(project(":core"))
     api(project(":presentation"))
     api(Dependencies.Android.androidCoreKtx)
-    api(Dependencies.Android.appCompat)
     api(Dependencies.Android.materialComponents)
     api(Dependencies.Testing.JUnit4)
     api(Dependencies.Testing.coroutinesTest)

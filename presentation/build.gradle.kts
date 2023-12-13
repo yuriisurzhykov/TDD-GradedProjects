@@ -32,7 +32,6 @@ android {
 
 dependencies {
     implementation(Dependencies.Android.androidCoreKtx)
-    implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.materialComponents)
     testImplementation(Dependencies.Testing.JUnit4)
     androidTestImplementation(Dependencies.Testing.androidJUnit4)

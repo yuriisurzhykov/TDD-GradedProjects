@@ -62,9 +62,9 @@ dependencies {
     implementation(project(":stringReverse"))
     implementation(project(":core"))
     implementation(project(":primeNumber"))
+    implementation(project(":fibonacci"))
 
     implementation(Dependencies.Android.androidCoreKtx)
-    implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.materialComponents)
     implementation(Dependencies.Android.constraintLayout)
     implementation(Dependencies.DI.hilt)

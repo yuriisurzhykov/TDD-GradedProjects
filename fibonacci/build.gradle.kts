@@ -43,7 +43,6 @@ dependencies {
     implementation(project(":core"))
 
     implementation(Dependencies.Android.androidCoreKtx)
-    implementation(Dependencies.Android.appCompat)
     implementation(Dependencies.Android.materialComponents)
     implementation(Dependencies.DI.hilt)
     implementation(Dependencies.Android.viewmodelKtx)
