@@ -44,4 +44,11 @@ class FibonacciGeneratorTest {
             )
         assertEquals(expected, actual)
     }
+
+    @Test(expected = IllegalArgumentException::class)
+    fun `generateSequence for when param is about max integer`(): Unit = runBlocking {
+        val generator = FibonacciGenerator.Base()
+
+        generator.generate(Int.MAX_VALUE)
+    }
 }
