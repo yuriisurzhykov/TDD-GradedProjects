@@ -1,5 +1,7 @@
 package com.yuriisurzhykov.tddgraded.fibonacci
 
+import com.yuriisurzhykov.tddgraded.fibonacci.data.FibonacciGenerator
+import com.yuriisurzhykov.tddgraded.fibonacci.data.FibonacciItem
 import kotlinx.coroutines.runBlocking
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -40,7 +42,10 @@ class FibonacciGeneratorTest {
                 FibonacciItem.Base(1, null),
                 FibonacciItem.Base(1, FibonacciItem.Base(1, null)),
                 FibonacciItem.Base(2, FibonacciItem.Base(1, FibonacciItem.Base(1, null))),
-                FibonacciItem.Base(3, FibonacciItem.Base(2, FibonacciItem.Base(1, FibonacciItem.Base(1, null)))),
+                FibonacciItem.Base(
+                    3,
+                    FibonacciItem.Base(2, FibonacciItem.Base(1, FibonacciItem.Base(1, null)))
+                ),
             )
         assertEquals(expected, actual)
     }
