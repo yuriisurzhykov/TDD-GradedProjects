@@ -1,7 +1,5 @@
 package com.yuriisurzhykov.tddgraded.fibonacci.data
 
-`import java.lang.IllegalArgumentException
-
 interface FibonacciGenerator {
 
 
