@@ -17,7 +17,6 @@
 package com.yuriisurzhykov.tddgraded.fibonacci
 
 import com.yuriisurzhykov.tddgraded.fibonacci.domain.StringToIntegerMapper
-import com.yuriisurzhykov.tddgraded.fibonacci.domain.error.InvalidNumberException
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -49,11 +48,14 @@ class StringToIntegerMapperTest {
         assertEquals(expected, actual)
     }
 
-    @Test(expected = InvalidNumberException::class)
+    @Test
     fun `test positive string value and dot`() = runTest {
         val mapper = StringToIntegerMapper.Base()
 
-        mapper.map("123.151")
+        val actual = mapper.map("123.151")
+        val expected = 123
+
+        assertEquals(expected, actual)
     }
 
     @Test
