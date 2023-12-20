@@ -41,12 +41,12 @@ class FibonacciViewModel @Inject constructor(
 ) : ViewModel(), FibonacciScreenApi {
 
     private val fibonacciFlow = MutableStateFlow<List<FibonacciItem>>(emptyList())
-    private var collectJobs: CoroutineScope? = null
+    private var collectScope: CoroutineScope? = null
 
     override fun startGenerate(amount: String) {
-        collectJobs?.cancel()
-        collectJobs = viewModelScope + SupervisorJob()
-        dispatchers.launchBackground(collectJobs!!) {
+        collectScope?.cancel()
+        collectScope = viewModelScope + SupervisorJob()
+        dispatchers.launchBackground(collectScope!!) {
             val flow = fibonacciFlowGenerator.fibonacciFlow(number = mapper.map(amount))
             fibonacciFlow.emitAll(flow)
             fibonacciFlow.collect()
@@ -54,4 +54,8 @@ class FibonacciViewModel @Inject constructor(
     }
 
     override fun fibonacciSequence(): Flow<List<FibonacciItem>> = fibonacciFlow
+
+    override fun onCleared() {
+        collectScope?.cancel()
+    }
 }
