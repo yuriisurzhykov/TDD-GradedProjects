@@ -27,8 +27,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.plus
 import javax.inject.Inject
 
@@ -39,14 +40,15 @@ class FibonacciViewModel @Inject constructor(
     private val mapper: StringToIntegerMapper
 ) : ViewModel(), FibonacciScreenApi {
 
-    private val fibonacciFlow = MutableSharedFlow<List<FibonacciItem>>()
+    private val fibonacciFlow = MutableStateFlow<List<FibonacciItem>>(emptyList())
     private var collectJobs: CoroutineScope? = null
 
     override fun startGenerate(amount: String) {
         collectJobs?.cancel()
         collectJobs = viewModelScope + SupervisorJob()
         dispatchers.launchBackground(collectJobs!!) {
-            fibonacciFlowGenerator.fibonacciFlow(number = mapper.map(amount))
+            val flow = fibonacciFlowGenerator.fibonacciFlow(number = mapper.map(amount))
+            fibonacciFlow.emitAll(flow)
             fibonacciFlow.collect()
         }
     }

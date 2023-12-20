@@ -32,7 +32,7 @@ class FibonacciUseCaseTest {
 
     @Test
     fun `check gives flow if input valid`() = runTest {
-        val testFlow = listOf(FibonacciItem.Base(1, null)).asFlow()
+        val testFlow = listOf(FibonacciItem.Base(1)).asFlow()
         val fakeGenerator = FakeFlowGenerator(testFlow)
         val fakeValidator = FakeValidator()
         val useCase = FibonacciUseCase.Base(fakeGenerator, fakeValidator)
@@ -52,8 +52,8 @@ class FibonacciUseCaseTest {
     @Test
     fun `check gives flow if input valid and number is 2`() = runTest {
         val testFlow = listOf(
-            FibonacciItem.Base(1, FibonacciItem.Base(1, null)),
-            FibonacciItem.Base(1, null)
+            FibonacciItem.Base(1),
+            FibonacciItem.Base(1)
         ).asFlow()
         val fakeGenerator = FakeFlowGenerator(testFlow)
         val fakeValidator = FakeValidator()

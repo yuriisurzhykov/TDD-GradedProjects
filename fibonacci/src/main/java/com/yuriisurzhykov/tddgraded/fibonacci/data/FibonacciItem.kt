@@ -19,14 +19,13 @@ package com.yuriisurzhykov.tddgraded.fibonacci.data
 interface FibonacciItem {
 
     interface Mapper<T : Any> {
-        fun map(currentValue: Int, parentValue: FibonacciItem?): T
+        fun map(currentValue: Int): T
 
         class Plus(
             private val assignValue: Int,
-            private val newParent: FibonacciItem
         ) : Mapper<FibonacciItem> {
-            override fun map(currentValue: Int, parentValue: FibonacciItem?): FibonacciItem {
-                return Base(assignValue + currentValue, newParent)
+            override fun map(currentValue: Int): FibonacciItem {
+                return Base(assignValue + currentValue)
             }
         }
     }
@@ -36,12 +35,11 @@ interface FibonacciItem {
     operator fun plus(item: FibonacciItem): FibonacciItem
 
     data class Base(
-        private val currentValue: Int,
-        private val parentValue: FibonacciItem?
+        private val currentValue: Int
     ) : FibonacciItem {
-        override fun <T : Any> map(mapper: Mapper<T>): T = mapper.map(currentValue, parentValue)
+        override fun <T : Any> map(mapper: Mapper<T>): T = mapper.map(currentValue)
 
         override fun plus(item: FibonacciItem): FibonacciItem =
-            item.map(Mapper.Plus(currentValue, this))
+            item.map(Mapper.Plus(currentValue))
     }
 }

@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2023 Yurii Surzhykov.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.yuriisurzhykov.tddgraded.fibonacci
 
 import com.yuriisurzhykov.tddgraded.fibonacci.data.FibonacciGenerator
@@ -13,7 +29,7 @@ class FibonacciGeneratorTest {
         val generator = FibonacciGenerator.Base()
 
         val actual = generator.generate(1)
-        val expected = listOf(FibonacciItem.Base(1, null))
+        val expected = listOf(FibonacciItem.Base(1))
 
         assertEquals(expected, actual)
     }
@@ -36,16 +52,14 @@ class FibonacciGeneratorTest {
     fun `generateSequence for positive`() = runBlocking {
         val generator = FibonacciGenerator.Base()
 
-        val actual = generator.generate(4)
+        val actual = generator.generate(5)
         val expected =
             listOf(
-                FibonacciItem.Base(1, null),
-                FibonacciItem.Base(1, FibonacciItem.Base(1, null)),
-                FibonacciItem.Base(2, FibonacciItem.Base(1, FibonacciItem.Base(1, null))),
-                FibonacciItem.Base(
-                    3,
-                    FibonacciItem.Base(2, FibonacciItem.Base(1, FibonacciItem.Base(1, null)))
-                ),
+                FibonacciItem.Base(1),
+                FibonacciItem.Base(1),
+                FibonacciItem.Base(2),
+                FibonacciItem.Base(3),
+                FibonacciItem.Base(5)
             )
         assertEquals(expected, actual)
     }

@@ -53,10 +53,7 @@ interface FibonacciScreenApi {
     fun fibonacciSequence(): Flow<List<FibonacciItem>>
 
     object Empty : FibonacciScreenApi {
-        override fun startGenerate(amount: String) {
-
-        }
-
+        override fun startGenerate(amount: String) = Unit
         override fun fibonacciSequence(): Flow<List<FibonacciItem>> = emptyFlow()
     }
 }
