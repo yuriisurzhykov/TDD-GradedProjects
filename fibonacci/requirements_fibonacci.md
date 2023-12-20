@@ -40,17 +40,16 @@ Technical Specifications
 
 ### Platform
 
-*   The application should be a web-based application or a mobile application.
+*   The application should be for android platform only.
 
 ### Programming Language
 
-*   Preferably implemented in JavaScript/TypeScript for a web application or Kotlin/Java for an Android application.
+*   Feature should be implemented as an android app module using Kotlin as primary language.
 
 ### Libraries and Frameworks
 
 *   Use standard libraries for UI components.
-*   For web applications, frameworks like React or Angular can be used.
-*   For mobile applications, native Android development or cross-platform frameworks like Flutter or React Native can be used.
+*   For mobile applications, native Android development.
 
 ### Testing
 
