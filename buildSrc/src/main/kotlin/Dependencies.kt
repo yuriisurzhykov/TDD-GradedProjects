@@ -68,5 +68,6 @@ object Dependencies {
     object Compose {
         const val compilerVersion = "1.5.6"
         const val material3 = "androidx.compose.material3:material3:${Versions.Compose.material3}"
+        const val runtimeLifecycle = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.Compose.runtimeLifecycle}"
     }
 }

@@ -23,6 +23,7 @@ import com.yuriisurzhykov.tddgraded.fibonacci.domain.SequenceNumberInputValidato
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.toCollection
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.assertEquals
 import org.junit.Test
@@ -38,8 +39,34 @@ class FibonacciUseCaseTest {
 
         fakeValidator.valid = { true }
 
-        val actual = useCase.fibonacciFlow(1).collect()
-        val expected = testFlow.collect()
+        var actual: List<FibonacciItem> = emptyList()
+        useCase.fibonacciFlow(1).collect {
+            actual = it
+        }
+        val expected: MutableList<FibonacciItem> = mutableListOf()
+        testFlow.toCollection(expected)
+
+        assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `check gives flow if input valid and number is 2`() = runTest {
+        val testFlow = listOf(
+            FibonacciItem.Base(1, FibonacciItem.Base(1, null)),
+            FibonacciItem.Base(1, null)
+        ).asFlow()
+        val fakeGenerator = FakeFlowGenerator(testFlow)
+        val fakeValidator = FakeValidator()
+        val useCase = FibonacciUseCase.Base(fakeGenerator, fakeValidator)
+
+        fakeValidator.valid = { true }
+
+        var actual: List<FibonacciItem> = emptyList()
+        useCase.fibonacciFlow(2).collect {
+            actual = it
+        }
+        val expected: MutableList<FibonacciItem> = mutableListOf()
+        testFlow.toCollection(expected)
 
         assertEquals(expected, actual)
     }

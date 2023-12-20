@@ -37,5 +37,6 @@ object Versions {
 
     object Compose {
         const val material3 = "1.1.2"
+        const val runtimeLifecycle = "2.6.2"
     }
 }

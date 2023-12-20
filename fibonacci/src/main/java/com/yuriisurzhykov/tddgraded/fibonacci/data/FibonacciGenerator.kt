@@ -19,10 +19,10 @@ package com.yuriisurzhykov.tddgraded.fibonacci.data
 interface FibonacciGenerator {
 
 
-    suspend fun generate(sequenceAmount: Int): List<FibonacciItem>
+    fun generate(sequenceAmount: Int): List<FibonacciItem>
 
     class Base : FibonacciGenerator {
-        override suspend fun generate(sequenceAmount: Int): List<FibonacciItem> {
+        override fun generate(sequenceAmount: Int): List<FibonacciItem> {
             val resultList = mutableListOf<FibonacciItem>()
 
             if (sequenceAmount <= 0) error("Sequence number must be at least 1!")

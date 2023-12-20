@@ -29,7 +29,9 @@ interface FibonacciFlowGenerator {
         private val eachDelay: Long,
         private val generator: FibonacciGenerator
     ) : FibonacciFlowGenerator {
-        override suspend fun fibonacciFlow(sequenceAmount: Int): Flow<FibonacciItem> =
-            generator.generate(sequenceAmount).asFlow().onEach { delay(eachDelay) }
+        override suspend fun fibonacciFlow(sequenceAmount: Int): Flow<FibonacciItem> = generator
+            .generate(sequenceAmount)
+            .asFlow()
+            .onEach { delay(eachDelay) }
     }
 }

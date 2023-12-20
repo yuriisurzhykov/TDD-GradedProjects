@@ -19,19 +19,24 @@ package com.yuriisurzhykov.tddgraded.fibonacci.domain
 import com.yuriisurzhykov.tddgraded.fibonacci.data.FibonacciFlowGenerator
 import com.yuriisurzhykov.tddgraded.fibonacci.data.FibonacciItem
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.transform
 import javax.inject.Inject
 
 interface FibonacciUseCase {
 
-    suspend fun fibonacciFlow(number: Int): Flow<FibonacciItem>
+    suspend fun fibonacciFlow(number: Int): Flow<List<FibonacciItem>>
 
     class Base @Inject constructor(
         private val flowGenerator: FibonacciFlowGenerator,
         private val validator: SequenceNumberInputValidator
     ) : FibonacciUseCase {
-        override suspend fun fibonacciFlow(number: Int): Flow<FibonacciItem> {
+        override suspend fun fibonacciFlow(number: Int): Flow<List<FibonacciItem>> {
+            val flowItemsList = mutableListOf<FibonacciItem>()
             return if (validator.validate(number)) {
-                flowGenerator.fibonacciFlow(number)
+                flowGenerator.fibonacciFlow(number).transform { item ->
+                    flowItemsList.add(item)
+                    emit(flowItemsList)
+                }
             } else throw IllegalArgumentException("Number must be positive!")
         }
     }

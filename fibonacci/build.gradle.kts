@@ -70,6 +70,7 @@ dependencies {
     implementation(Dependencies.DI.hilt)
     implementation(Dependencies.Android.viewmodelKtx)
     implementation(Dependencies.Android.fragmentKtx)
+    implementation(Dependencies.Compose.runtimeLifecycle)
     kapt(Dependencies.DI.hiltCompiler)
     testImplementation(Dependencies.Testing.JUnit4)
     testImplementation(Dependencies.Testing.coroutinesTest)
