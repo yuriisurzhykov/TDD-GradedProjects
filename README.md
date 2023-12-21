@@ -1,4 +1,7 @@
 <h1 align="center">TDD Graded Projects</h1>
+
+![](https://github.com/yuriisurzhykov/TDD-GradedProjects/blob/master/tdd-projects-preview.png)
+
 <p>In this repository there will be a lot of separate projects from a newbie level to an expert level.</p>
 <p>There will be 5 levels of difficulty. And on each of levels there will be 10 tasks/projects. Each project will be developed by TDD principle, using MVVM+Clean architecture, most latest tools for Android development such as Kotlin Coroutines, Gradle Kotlin DSL, Firebase services, Android Jetpack Components.</p>
 <h3>Design</h3>
