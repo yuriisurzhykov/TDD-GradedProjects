@@ -23,7 +23,7 @@ import com.yuriisurzhykov.tddgraded.core.Communication
 interface FakeCommunication<T : Any> : Communication.Put<T>, Communication.Observe<T>,
     Communication.Post<T> {
 
-    abstract class Abstract<T : Any> : FakeCommunication<T> {
+    abstract class Abstract<T : Any> : FakeCommunication<T>, Communication.Abstract<T>() {
 
         private var currentValue: T? = null
         private var callCounts: Int = 0
@@ -36,8 +36,8 @@ interface FakeCommunication<T : Any> : Communication.Put<T>, Communication.Obser
         }
 
         override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
-            observer.onChanged(currentValue!!)
             observers.add(observer)
+            currentValue?.let { observer.onChanged(it) }
         }
 
         override fun post(value: T) {

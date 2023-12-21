@@ -62,6 +62,7 @@ dependencies {
     implementation(project(":presentation"))
     testImplementation(Dependencies.Testing.JUnit4)
     testImplementation(Dependencies.Testing.coroutinesTest)
+    testImplementation(project(":testingCore"))
     androidTestImplementation(Dependencies.Testing.androidJUnit4)
     androidTestImplementation(Dependencies.Testing.espressoCore)
     androidTestImplementation(Dependencies.Testing.hiltTesting)

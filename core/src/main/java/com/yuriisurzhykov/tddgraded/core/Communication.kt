@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Yurii Surzhykov. 
+ * Copyright (c) 2023 Yurii Surzhykov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,7 @@ interface Communication {
         fun post(value: T)
     }
 
-    abstract class Abstract<T : Any> constructor(
+    abstract class Abstract<T : Any>(
         private val liveData: MutableLiveData<T> = MutableLiveData()
     ) : Put<T>, Observe<T>, Post<T> {
         override fun put(value: T) {
