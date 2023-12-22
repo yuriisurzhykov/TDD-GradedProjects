@@ -13,18 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+@file:OptIn(ExperimentalCoroutinesApi::class)
 
 package com.yuriisurzhykov.tddgraded.palindrome
 
+import com.yuriisurzhykov.tddgraded.core.Communication
+import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.tddgraded.palindrome.data.PalindromeInputEntity
 import com.yuriisurzhykov.tddgraded.palindrome.domain.IPalindromeCheckUseCase
 import com.yuriisurzhykov.tddgraded.palindrome.domain.PalindromeCheckCommunication
 import com.yuriisurzhykov.tddgraded.palindrome.presentation.PalindromeCheckViewModel
-import com.yuriisurzhykov.tddgraded.core.Communication
-import com.yuriisurzhykov.tddgraded.core.Dispatchers
 import com.yuriisurzhykov.tddgraded.presentation.resources.StringResource
 import junit.framework.TestCase
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import org.junit.Before
 import org.junit.Test
@@ -83,7 +85,8 @@ private class FakePalindromeCheckUseCase constructor(
     override suspend fun check(input: PalindromeInputEntity) = checkState
 }
 
-private class FakePalindromeCommunication : Communication.Abstract<IPalindromeCheckState>(),
+private class FakePalindromeCommunication :
+    Communication.LiveData.Abstract<IPalindromeCheckState>(),
     PalindromeCheckCommunication {
 
     private lateinit var value: IPalindromeCheckState
@@ -99,4 +102,5 @@ private class FakePalindromeCommunication : Communication.Abstract<IPalindromeCh
     fun checkCallCount(count: Int) = callCount == count
 }
 
-private class FakeDispatchers : Dispatchers.Abstract(UnconfinedTestDispatcher(), UnconfinedTestDispatcher())
+private class FakeDispatchers :
+    Dispatchers.Abstract(UnconfinedTestDispatcher(), UnconfinedTestDispatcher())

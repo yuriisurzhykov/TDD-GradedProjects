@@ -20,10 +20,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.yuriisurzhykov.tddgraded.core.Communication
 
-interface FakeCommunication<T : Any> : Communication.Put<T>, Communication.Observe<T>,
-    Communication.Post<T> {
+interface FakeCommunication<T : Any> : Communication.LiveData.Put<T>,
+    Communication.LiveData.Observe<T>,
+    Communication.LiveData.Post<T> {
 
-    abstract class Abstract<T : Any> : FakeCommunication<T>, Communication.Abstract<T>() {
+    abstract class Abstract<T : Any> : FakeCommunication<T>, Communication.LiveData.Abstract<T>() {
 
         private var currentValue: T? = null
         private var callCounts: Int = 0

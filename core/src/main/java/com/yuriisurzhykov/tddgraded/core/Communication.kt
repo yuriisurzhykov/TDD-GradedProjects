@@ -22,31 +22,34 @@ import androidx.lifecycle.Observer
 
 interface Communication {
 
-    interface Put<T : Any> {
-        fun put(value: T)
-    }
-
-    interface Observe<T : Any> {
-        fun observe(owner: LifecycleOwner, observer: Observer<T>)
-    }
-
-    interface Post<T : Any> {
-        fun post(value: T)
-    }
-
-    abstract class Abstract<T : Any>(
-        private val liveData: MutableLiveData<T> = MutableLiveData()
-    ) : Put<T>, Observe<T>, Post<T> {
-        override fun put(value: T) {
-            liveData.value = value
+    interface LiveData {
+        interface Put<T : Any> {
+            fun put(value: T)
         }
 
-        override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
-            liveData.observe(owner, observer)
+        interface Observe<T : Any> {
+            fun observe(owner: LifecycleOwner, observer: Observer<T>)
         }
 
-        override fun post(value: T) {
-            liveData.postValue(value)
+        interface Post<T : Any> {
+            fun post(value: T)
         }
+
+        abstract class Abstract<T : Any>(
+            private val liveData: MutableLiveData<T> = MutableLiveData()
+        ) : Put<T>, Observe<T>, Post<T> {
+            override fun put(value: T) {
+                liveData.value = value
+            }
+
+            override fun observe(owner: LifecycleOwner, observer: Observer<T>) {
+                liveData.observe(owner, observer)
+            }
+
+            override fun post(value: T) {
+                liveData.postValue(value)
+            }
+        }
+
     }
 }

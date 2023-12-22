@@ -33,7 +33,7 @@ class StringReverseViewModel @Inject constructor(
     private val useCase: IStringReverseUseCase,
     private val communication: StringReverseCommunication,
     private val dispatchers: Dispatchers
-) : ViewModel(), Communication.Observe<IStringReverseState>, IStringReverseViewModel {
+) : ViewModel(), Communication.LiveData.Observe<IStringReverseState>, IStringReverseViewModel {
 
     override fun observe(owner: LifecycleOwner, observer: Observer<IStringReverseState>) {
         communication.observe(owner, observer)
