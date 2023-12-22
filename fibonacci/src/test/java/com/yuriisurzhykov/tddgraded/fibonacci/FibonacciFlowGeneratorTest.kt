@@ -32,7 +32,7 @@ class FibonacciFlowGeneratorTest {
         val delay = 100L
         val results = listOf(FibonacciItem.Base(1))
         val fakeGenerator = FakeGenerator(results)
-        val generator = FibonacciFlowGenerator.Base(delay, fakeGenerator)
+        val generator = FibonacciFlowGenerator.Base(fakeGenerator, delay)
 
         val actual = generator.fibonacciFlow(1).collect()
         val expected = results.asFlow().collect()

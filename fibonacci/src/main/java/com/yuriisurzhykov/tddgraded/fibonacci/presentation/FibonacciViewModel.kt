@@ -36,7 +36,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FibonacciViewModel @Inject constructor(
     private val dispatchers: Dispatchers,
-    private val fibonacciFlowGenerator: FibonacciUseCase,
+    private val fibonacciUseCase: FibonacciUseCase,
     private val mapper: StringToIntegerMapper
 ) : ViewModel(), FibonacciScreenApi {
 
@@ -47,7 +47,7 @@ class FibonacciViewModel @Inject constructor(
         collectScope?.cancel()
         collectScope = viewModelScope + SupervisorJob()
         dispatchers.launchBackground(collectScope!!) {
-            val flow = fibonacciFlowGenerator.fibonacciFlow(number = mapper.map(amount))
+            val flow = fibonacciUseCase.fibonacciFlow(number = mapper.map(amount))
             fibonacciFlow.emitAll(flow)
             fibonacciFlow.collect()
         }

@@ -26,8 +26,8 @@ interface FibonacciFlowGenerator {
     suspend fun fibonacciFlow(sequenceAmount: Int): Flow<FibonacciItem>
 
     class Base(
-        private val eachDelay: Long,
-        private val generator: FibonacciGenerator
+        private val generator: FibonacciGenerator,
+        private val eachDelay: Long
     ) : FibonacciFlowGenerator {
         override suspend fun fibonacciFlow(sequenceAmount: Int): Flow<FibonacciItem> = generator
             .generate(sequenceAmount)
