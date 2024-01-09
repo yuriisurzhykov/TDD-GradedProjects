@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Yurii Surzhykov.
+ * Copyright (c) 2023-2024 Yurii Surzhykov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,9 @@ package com.yuriisurzhykov.tddgraded.core
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.FlowCollector
+import kotlinx.coroutines.flow.MutableSharedFlow
 
 interface Communication {
 
@@ -50,6 +53,32 @@ interface Communication {
                 liveData.postValue(value)
             }
         }
+    }
 
+    @Suppress("unused")
+    interface Flow {
+        interface Emit<T : Any> {
+            suspend fun emit(value: T)
+        }
+
+        interface Set<T : Any> {
+            fun set(value: T)
+        }
+
+        interface Collect<T : Any> {
+            suspend fun collect(scope: CoroutineScope, collector: FlowCollector<T>)
+        }
+
+        interface Mutable<T : Any> : Collect<T>, Emit<T>
+
+        abstract class Abstract<T : Any>(
+            private val flow: MutableSharedFlow<T> = MutableSharedFlow()
+        ) : Mutable<T> {
+            override suspend fun emit(value: T) = flow.emit(value)
+
+            override suspend fun collect(scope: CoroutineScope, collector: FlowCollector<T>) {
+                flow.collect(collector)
+            }
+        }
     }
 }
