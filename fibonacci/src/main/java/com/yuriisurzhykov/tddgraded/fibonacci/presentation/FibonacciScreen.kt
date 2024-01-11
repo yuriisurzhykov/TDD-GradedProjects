@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Yurii Surzhykov.
+ * Copyright (c) 2023-2024 Yurii Surzhykov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package com.yuriisurzhykov.tddgraded.fibonacci.presentation
 
+import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -30,6 +31,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -65,10 +67,12 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
             mutableStateOf("")
         }
         val focusManager = LocalFocusManager.current
+        var textFieldAlignment by remember { mutableStateOf(Alignment.Center) }
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .align(Alignment.Center),
+                .align(textFieldAlignment)
+                .animateContentSize(),
             value = fibonacciAmount,
             onValueChange = { fibonacciAmount = it },
             placeholder = {
@@ -82,6 +86,7 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
             keyboardActions = KeyboardActions(onGo = {
                 api.startGenerate(fibonacciAmount)
                 focusManager.clearFocus()
+                textFieldAlignment = Alignment.TopCenter
             })
         )
         Button(
