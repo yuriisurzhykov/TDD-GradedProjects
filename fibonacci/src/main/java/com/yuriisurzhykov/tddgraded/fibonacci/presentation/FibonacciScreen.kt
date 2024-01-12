@@ -17,11 +17,10 @@
 package com.yuriisurzhykov.tddgraded.fibonacci.presentation
 
 import androidx.compose.animation.animateContentSize
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -44,7 +43,6 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.yuriisurzhykov.tddgraded.fibonacci.R
-import com.yuriisurzhykov.tddgraded.fibonacci.data.FibonacciItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
@@ -52,11 +50,11 @@ interface FibonacciScreenApi {
 
     fun startGenerate(amount: String)
 
-    fun fibonacciSequence(): Flow<List<FibonacciItem>>
+    fun screenStateFlow(): Flow<FibonacciScreenState>
 
     object Empty : FibonacciScreenApi {
         override fun startGenerate(amount: String) = Unit
-        override fun fibonacciSequence(): Flow<List<FibonacciItem>> = emptyFlow()
+        override fun screenStateFlow() = emptyFlow<FibonacciScreenState>()
     }
 }
 
@@ -72,7 +70,7 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
             modifier = Modifier
                 .fillMaxWidth(0.7f)
                 .align(textFieldAlignment)
-                .animateContentSize(),
+                .animateContentSize(animationSpec = tween(500)),
             value = fibonacciAmount,
             onValueChange = { fibonacciAmount = it },
             placeholder = {
@@ -92,7 +90,8 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
         Button(
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .align(Alignment.BottomCenter),
+                .align(Alignment.BottomCenter)
+                .animateContentSize(animationSpec = tween(500)),
             onClick = {
                 api.startGenerate(fibonacciAmount)
                 focusManager.clearFocus()
@@ -101,12 +100,8 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
         ) {
             Text(text = stringResource(id = R.string.fibonacci_sequence_generate_button))
         }
-        val items = api.fibonacciSequence().collectAsState(initial = emptyList()).value
-        LazyColumn {
-            items(items = items) {
-                Text(text = "Item $it")
-            }
-        }
+        val state = api.screenStateFlow().collectAsState(initial = FibonacciScreenState.Idle).value
+        state.Render()
     }
 }
 

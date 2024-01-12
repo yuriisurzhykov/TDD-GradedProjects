@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?><!--
-  ~ Copyright (c) 2023 Yurii Surzhykov.
+  ~ Copyright (c) 2023-2024 Yurii Surzhykov.
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -17,4 +17,5 @@
 <resources>
     <string name="fibonacci_sequence_input_hint">Enter sequence number</string>
     <string name="fibonacci_sequence_generate_button">Generate</string>
+    <string name="generate_icon_description">Generate fibonacci numbers</string>
 </resources>

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Yurii Surzhykov.
+ * Copyright (c) 2023-2024 Yurii Surzhykov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,10 +21,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.Modifier
 import com.yuriisurzhykov.tddgraded.fibonacci.presentation.FibonacciScreen
 import com.yuriisurzhykov.tddgraded.fibonacci.presentation.FibonacciViewModel
+import com.yuriisurzhykov.wonderscalculator.ui.theme.FibonacciCalculatorTheme
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -35,7 +35,7 @@ class FibonacciActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            MaterialTheme {
+            FibonacciCalculatorTheme {
                 FibonacciScreen(
                     modifier = Modifier.fillMaxSize(),
                     api = viewModel

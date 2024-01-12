@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Yurii Surzhykov.
+ * Copyright (c) 2023-2024 Yurii Surzhykov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -69,5 +69,6 @@ object Dependencies {
         const val compilerVersion = "1.5.6"
         const val material3 = "androidx.compose.material3:material3:${Versions.Compose.material3}"
         const val runtimeLifecycle = "androidx.lifecycle:lifecycle-runtime-compose:${Versions.Compose.runtimeLifecycle}"
+        const val constraintLayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
     }
 }

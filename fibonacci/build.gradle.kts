@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2023 Yurii Surzhykov.
+ * Copyright (c) 2023-2024 Yurii Surzhykov.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -71,6 +71,7 @@ dependencies {
     implementation(Dependencies.Android.viewmodelKtx)
     implementation(Dependencies.Android.fragmentKtx)
     implementation(Dependencies.Compose.runtimeLifecycle)
+    implementation(Dependencies.Compose.constraintLayout)
     kapt(Dependencies.DI.hiltCompiler)
     testImplementation(Dependencies.Testing.JUnit4)
     testImplementation(Dependencies.Testing.coroutinesTest)
