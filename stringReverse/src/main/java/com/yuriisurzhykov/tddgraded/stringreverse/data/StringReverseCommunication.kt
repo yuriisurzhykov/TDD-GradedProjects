@@ -21,8 +21,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.yuriisurzhykov.tddgraded.core.Communication
 
-interface StringReverseCommunication : Communication.Observe<IStringReverseState>,
-    Communication.Put<IStringReverseState> {
+interface StringReverseCommunication : Communication.LiveData.Observe<IStringReverseState>,
+    Communication.LiveData.Put<IStringReverseState> {
 
     abstract class Abstract(private val liveData: MutableLiveData<IStringReverseState> = MutableLiveData()) :
         StringReverseCommunication {

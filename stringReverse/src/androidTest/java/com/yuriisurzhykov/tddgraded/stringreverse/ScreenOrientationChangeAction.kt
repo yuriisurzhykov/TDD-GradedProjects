@@ -19,7 +19,6 @@ package com.yuriisurzhykov.tddgraded.stringreverse
 import android.app.Activity
 import android.content.Context
 import android.view.View
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.test.espresso.UiController
 import androidx.test.espresso.ViewAction
 import androidx.test.espresso.matcher.ViewMatchers.isRoot

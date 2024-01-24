@@ -1,3 +1,19 @@
+/*
+ * Copyright (c) 2023 Yurii Surzhykov.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 import androidx.lifecycle.Lifecycle
 import com.yuriisurzhykov.tddgraded.primenumber.data.PrimeNumberCheckResult
 import com.yuriisurzhykov.tddgraded.primenumber.domain.PrimeNumberCheckCommunication
@@ -17,7 +33,7 @@ class TestPrimeCheckViewModel {
     fun test_initialize_viewModel_get_result_and_recreate() {
         val useCase = PrimeNumberCheckUseCase.Base()
         val dispatchers = FakeDispatchers()
-        val communication = TestPrimeCheckCommunication()
+        val communication = FakePrimeCheckCommunication()
         val stringParser = StringToIntParser.Base()
         val viewModel = PrimeCheckViewModel(
             primeCheckUseCase = useCase,
@@ -30,20 +46,20 @@ class TestPrimeCheckViewModel {
         val observer1 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer1)
         viewModel.checkNumber(testData)
-        assertEquals(communication.getStateResult(), expected)
-        assertEquals(observer1.getCurrentValue(), expected)
-        assertEquals(communication.getCallCounts(), 1)
+        assertEquals(expected, communication.getStateResult())
+        assertEquals(expected, observer1.getCurrentValue())
+        assertEquals(1, communication.getCallCounts())
         val observer2 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer2)
-        assertEquals(observer2.getCurrentValue(), expected)
-        assertEquals(communication.getCallCounts(), 1)
+        assertEquals(expected, observer2.getCurrentValue())
+        assertEquals(1, communication.getCallCounts())
     }
 
     @Test
     fun test_initialize_viewModel_pass_invalid_data() {
         val useCase = PrimeNumberCheckUseCase.Base()
         val dispatchers = FakeDispatchers()
-        val communication = TestPrimeCheckCommunication()
+        val communication = FakePrimeCheckCommunication()
         val stringParser = StringToIntParser.Base()
         val viewModel = PrimeCheckViewModel(
             primeCheckUseCase = useCase,
@@ -56,20 +72,22 @@ class TestPrimeCheckViewModel {
         val observer1 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer1)
         viewModel.checkNumber(testData)
-        assertEquals(communication.getStateResult(), expected)
-        assertEquals(observer1.getCurrentValue(), expected)
-        assertEquals(communication.getCallCounts(), 1)
+
+        assertEquals(expected, communication.getStateResult())
+        assertEquals(expected, observer1.getCurrentValue())
+        assertEquals(1, communication.getCallCounts())
+
         val observer2 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer2)
-        assertEquals(observer2.getCurrentValue(), expected)
-        assertEquals(communication.getCallCounts(), 1)
+        assertEquals(expected, observer2.getCurrentValue())
+        assertEquals(1, communication.getCallCounts())
     }
 
     @Test
     fun test_viewModel_with_pass_correct_data() {
         val useCase = PrimeNumberCheckUseCase.Base()
         val dispatchers = FakeDispatchers()
-        val communication = TestPrimeCheckCommunication()
+        val communication = FakePrimeCheckCommunication()
         val stringParser = StringToIntParser.Base()
         val viewModel = PrimeCheckViewModel(
             primeCheckUseCase = useCase,
@@ -82,18 +100,18 @@ class TestPrimeCheckViewModel {
         val observer1 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer1)
         viewModel.checkNumber(testData)
-        assertEquals(communication.getStateResult(), expected)
-        assertEquals(observer1.getCurrentValue(), expected)
-        assertEquals(communication.getCallCounts(), 1)
+        assertEquals(expected, communication.getStateResult())
+        assertEquals(expected, observer1.getCurrentValue())
+        assertEquals(1, communication.getCallCounts())
         val observer2 = FakePrimeNumberObserver()
         viewModel.observe(FakeLifecycleOwner(Lifecycle.State.RESUMED), observer2)
-        assertEquals(observer2.getCurrentValue(), expected)
-        assertEquals(communication.getCallCounts(), 1)
+        assertEquals(expected, observer2.getCurrentValue())
+        assertEquals(1, communication.getCallCounts())
     }
 
 }
 
-private class TestPrimeCheckCommunication : FakeCommunication.Abstract<PrimeNumberCheckResult>(),
+private class FakePrimeCheckCommunication : FakeCommunication.Abstract<PrimeNumberCheckResult>(),
     PrimeNumberCheckCommunication
 
-private class FakePrimeNumberObserver : FakeObserver.Abstract<PrimeNumberCheckResult>()
+private class FakePrimeNumberObserver : FakeObserver<PrimeNumberCheckResult>()

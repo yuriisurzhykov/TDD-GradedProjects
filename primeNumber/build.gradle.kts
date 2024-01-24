@@ -31,7 +31,6 @@ android {
 
     defaultConfig {
         minSdk = ProjectConfigs.minSdkVersion
-        targetSdk = ProjectConfigs.targetSdkVersion
 
         testInstrumentationRunner = "${ProjectConfigs.applicationId}.primenumber.CustomTestRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -44,11 +43,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = ProjectConfigs.jvmSourceCompatibility
+        targetCompatibility = ProjectConfigs.jvmTargetCompatibility
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = ProjectConfigs.jvmTarget
     }
 }
 
@@ -56,7 +55,6 @@ dependencies {
     api(project(":core"))
     api(project(":presentation"))
     api(Dependencies.Android.androidCoreKtx)
-    api(Dependencies.Android.appCompat)
     api(Dependencies.Android.materialComponents)
     api(Dependencies.DI.hilt)
     api(Dependencies.Android.viewmodelKtx)

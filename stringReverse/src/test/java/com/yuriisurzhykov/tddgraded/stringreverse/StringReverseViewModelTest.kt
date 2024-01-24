@@ -17,7 +17,6 @@
 package com.yuriisurzhykov.tddgraded.stringreverse
 
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import com.yuriisurzhykov.tddgraded.core.Dispatchers
@@ -26,7 +25,9 @@ import com.yuriisurzhykov.tddgraded.stringreverse.data.StringReverseCommunicatio
 import com.yuriisurzhykov.tddgraded.stringreverse.domain.IStringReverseUseCase
 import com.yuriisurzhykov.tddgraded.stringreverse.domain.ManualStringReverseUseCase
 import com.yuriisurzhykov.tddgraded.stringreverse.presentation.StringReverseViewModel
-import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import com.yuriisurzhykov.testingcore.FakeDispatchers
+import com.yuriisurzhykov.testingcore.FakeLifecycleOwner
+import com.yuriisurzhykov.testingcore.FakeObserver
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
@@ -36,7 +37,7 @@ class StringReverseViewModelTest {
     fun `test view model for user input`() {
         val useCase: IStringReverseUseCase = ManualStringReverseUseCase()
         val communication = FakeStringReverseCommunication()
-        val dispatchers: Dispatchers = TestCoroutineDispatchers()
+        val dispatchers: Dispatchers = FakeDispatchers()
         val viewModel = StringReverseViewModel(
             useCase = useCase,
             communication = communication,
@@ -53,7 +54,7 @@ class StringReverseViewModelTest {
     fun `test view model for user input and recreate fragment`() {
         val useCase: IStringReverseUseCase = ManualStringReverseUseCase()
         val communication = FakeStringReverseCommunication()
-        val dispatchers: Dispatchers = TestCoroutineDispatchers()
+        val dispatchers: Dispatchers = FakeDispatchers()
         val viewModel = StringReverseViewModel(
             useCase = useCase,
             communication = communication,
@@ -61,21 +62,16 @@ class StringReverseViewModelTest {
         )
         val userInputTest = "Some user input text"
         val expected = IStringReverseState.Success("txet tupni resu emoS")
-        viewModel.observe(FakeViewLifecycleOwner(Lifecycle.State.STARTED), FakeObserver())
+        viewModel.observe(FakeLifecycleOwner(Lifecycle.State.STARTED), FakeObserver())
         viewModel.applyUserInput(userInputTest)
         assertEquals(expected, communication.getCurrentValue())
         assertEquals(1, communication.getCallsCount())
-        viewModel.observe(FakeViewLifecycleOwner(Lifecycle.State.STARTED), FakeObserver())
+        viewModel.observe(FakeLifecycleOwner(Lifecycle.State.STARTED), FakeObserver())
         assertEquals(2, communication.getObserveCount())
         assertEquals(1, communication.getCallsCount())
         assertEquals(expected, communication.getCurrentValue())
     }
 
-}
-
-class FakeObserver : Observer<IStringReverseState> {
-    override fun onChanged(t: IStringReverseState?) {
-    }
 }
 
 private class FakeStringReverseCommunication : StringReverseCommunication {
@@ -99,23 +95,3 @@ private class FakeStringReverseCommunication : StringReverseCommunication {
 
     fun getObserveCount() = observeCount
 }
-
-private class FakeViewLifecycleOwner(private val state: Lifecycle.State) : LifecycleOwner {
-
-    private var observerCount = 0
-    override fun getLifecycle() = object : Lifecycle() {
-        override fun addObserver(observer: LifecycleObserver) {
-            observerCount++
-        }
-
-        override fun removeObserver(observer: LifecycleObserver) {
-            observerCount--
-        }
-
-        override fun getCurrentState(): State = state
-    }
-}
-
-
-private class TestCoroutineDispatchers :
-    Dispatchers.Abstract(UnconfinedTestDispatcher(), UnconfinedTestDispatcher())

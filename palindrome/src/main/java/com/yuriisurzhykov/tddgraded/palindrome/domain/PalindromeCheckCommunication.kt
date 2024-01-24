@@ -16,10 +16,11 @@
 
 package com.yuriisurzhykov.tddgraded.palindrome.domain
 
-import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
 import com.yuriisurzhykov.tddgraded.core.Communication
+import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
 
 interface PalindromeCheckCommunication :
-    Communication.Put<IPalindromeCheckState>, Communication.Observe<IPalindromeCheckState> {
-    class Base : Communication.Abstract<IPalindromeCheckState>(), PalindromeCheckCommunication
+    Communication.LiveData.Put<IPalindromeCheckState>,
+    Communication.LiveData.Observe<IPalindromeCheckState> {
+    class Base : Communication.LiveData.Abstract<IPalindromeCheckState>(), PalindromeCheckCommunication
 }
