@@ -16,36 +16,46 @@
 
 package com.yuriisurzhykov.tddgraded.fibonacci.presentation
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.yuriisurzhykov.tddgraded.fibonacci.R
 import com.yuriisurzhykov.tddgraded.fibonacci.data.FibonacciItem
+import kotlinx.coroutines.flow.Flow
 
 interface FibonacciScreenState {
 
     @Composable
-    fun Render()
+    fun Render(modifier: Modifier)
 
-    object Idle: FibonacciScreenState {
+    object Idle : FibonacciScreenState {
         @Composable
-        override fun Render() {
-
+        override fun Render(modifier: Modifier) {
+            Text(text = stringResource(id = R.string.fibonacci_idle_text), modifier = modifier)
         }
     }
 
-    class Error(val reason: String): FibonacciScreenState {
+    class Error(@StringRes val reason: Int) : FibonacciScreenState {
         @Composable
-        override fun Render() {
-            TODO("Not yet implemented")
+        override fun Render(modifier: Modifier) {
+            Text(
+                modifier = modifier,
+                text = stringResource(id = R.string.error_message_format).format(stringResource(id = reason))
+            )
         }
     }
 
-    class Generating(private val mItems: List<FibonacciItem>): FibonacciScreenState {
+    class Generating(private val itemsFlow: Flow<List<FibonacciItem>>) : FibonacciScreenState {
         @Composable
-        override fun Render() {
-            LazyColumn {
-                items(mItems) {
+        override fun Render(modifier: Modifier) {
+            val items = itemsFlow.collectAsStateWithLifecycle(emptyList()).value
+            LazyColumn(modifier = modifier) {
+                items(items) {
                     Text(text = it.toString())
                 }
             }

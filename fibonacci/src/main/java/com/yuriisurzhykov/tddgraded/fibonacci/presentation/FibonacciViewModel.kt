@@ -19,15 +19,15 @@ package com.yuriisurzhykov.tddgraded.fibonacci.presentation
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.yuriisurzhykov.tddgraded.core.Dispatchers
+import com.yuriisurzhykov.tddgraded.fibonacci.R
 import com.yuriisurzhykov.tddgraded.fibonacci.domain.FibonacciUseCase
 import com.yuriisurzhykov.tddgraded.fibonacci.domain.StringToIntegerMapper
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.plus
 import javax.inject.Inject
 
@@ -45,11 +45,20 @@ class FibonacciViewModel @Inject constructor(
         collectScope?.cancel()
         collectScope = viewModelScope + SupervisorJob()
         dispatchers.launchBackground(collectScope!!) {
-            val flow = fibonacciUseCase.fibonacciFlow(number = mapper.map(amount))
-            fibonacciFlow.emitAll(flow)
-            fibonacciFlow.collect()
+            try {
+                val flow = fibonacciUseCase.fibonacciFlow(number = mapper.map(amount))
+                fibonacciFlow.emit(FibonacciScreenState.Generating(flow))
+            } catch (e: OutOfMemoryError) {
+                fibonacciFlow.emit(FibonacciScreenState.Error(R.string.error_out_of_memory))
+            } catch (e: IllegalArgumentException) {
+                fibonacciFlow.emit(FibonacciScreenState.Error(R.string.error_invalid_fibonacci_item))
+            } catch (e: Exception) {
+                fibonacciFlow.emit(FibonacciScreenState.Error(R.string.error_unknown_happened))
+            }
         }
     }
+
+    override fun screenStateFlow(): Flow<FibonacciScreenState> = fibonacciFlow
 
     override fun onCleared() {
         collectScope?.cancel()

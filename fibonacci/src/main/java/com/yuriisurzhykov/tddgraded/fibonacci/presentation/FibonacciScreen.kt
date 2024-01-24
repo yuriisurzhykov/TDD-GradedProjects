@@ -18,9 +18,9 @@ package com.yuriisurzhykov.tddgraded.fibonacci.presentation
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.animation.core.tween
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -41,7 +41,9 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import com.yuriisurzhykov.tddgraded.fibonacci.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -60,7 +62,8 @@ interface FibonacciScreenApi {
 
 @Composable
 fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
-    Box(modifier = modifier) {
+    ConstraintLayout(modifier = modifier) {
+        val (input, button, list) = createRefs()
         var fibonacciAmount by rememberSaveable {
             mutableStateOf("")
         }
@@ -69,7 +72,11 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
         OutlinedTextField(
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .align(textFieldAlignment)
+                .constrainAs(input) {
+                    top.linkTo(parent.top, margin = 16.dp)
+                    start.linkTo(parent.start, margin = 16.dp)
+                    end.linkTo(parent.end, margin = 16.dp)
+                }
                 .animateContentSize(animationSpec = tween(500)),
             value = fibonacciAmount,
             onValueChange = { fibonacciAmount = it },
@@ -90,7 +97,11 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
         Button(
             modifier = Modifier
                 .fillMaxWidth(0.7f)
-                .align(Alignment.BottomCenter)
+                .constrainAs(button) {
+                    bottom.linkTo(parent.bottom, margin = 16.dp)
+                    start.linkTo(parent.start, margin = 16.dp)
+                    end.linkTo(parent.end, margin = 16.dp)
+                }
                 .animateContentSize(animationSpec = tween(500)),
             onClick = {
                 api.startGenerate(fibonacciAmount)
@@ -100,8 +111,19 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
         ) {
             Text(text = stringResource(id = R.string.fibonacci_sequence_generate_button))
         }
-        val state = api.screenStateFlow().collectAsState(initial = FibonacciScreenState.Idle).value
-        state.Render()
+        val state =
+            api.screenStateFlow().collectAsState(initial = FibonacciScreenState.Idle).value
+        state.Render(
+            Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+                .constrainAs(list) {
+                    top.linkTo(input.bottom, margin = 16.dp)
+                    start.linkTo(parent.start, margin = 16.dp)
+                    end.linkTo(parent.end, margin = 16.dp)
+                    bottom.linkTo(button.top, margin = 16.dp)
+                }
+        )
     }
 }
 

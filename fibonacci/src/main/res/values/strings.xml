@@ -18,4 +18,9 @@
     <string name="fibonacci_sequence_input_hint">Enter sequence number</string>
     <string name="fibonacci_sequence_generate_button">Generate</string>
     <string name="generate_icon_description">Generate fibonacci numbers</string>
+    <string name="fibonacci_idle_text">Waiting for your input…</string>
+    <string name="error_message_format">Ooops, error happened. %s</string>
+    <string name="error_out_of_memory">Your input is too big for your device</string>
+    <string name="error_invalid_fibonacci_item">Oops, the application does not support the number as you entered</string>
+    <string name="error_unknown_happened">Something unknown happened during generating your items</string>
 </resources>
