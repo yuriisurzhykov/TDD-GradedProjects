@@ -1,3 +1,5 @@
+@file:Suppress("UnstableApiUsage")
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -14,10 +16,12 @@ dependencyResolutionManagement {
 }
 rootProject.name = "TDD-GradedProjects"
 include(":app")
-include(":core")
-include(":presentation")
-include(":palindrome")
-include(":stringReverse")
-include(":primeNumber")
-include(":testingCore")
-include(":tictactoe")
+include(":core:data")
+include(":core:presentation")
+include(":core:testing")
+include(":newbie:palindrome")
+include(":newbie:stringReverse")
+include(":newbie:primeNumber")
+include(":newbie:tictactoe")
+include(":core:data")
+include(":core:domain")

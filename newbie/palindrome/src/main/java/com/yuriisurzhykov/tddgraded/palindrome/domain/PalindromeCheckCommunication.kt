@@ -14,19 +14,12 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.tddgraded.di
+package com.yuriisurzhykov.tddgraded.palindrome.domain
 
-import com.yuriisurzhykov.tddgraded.core.data.Dispatchers
-import dagger.Module
-import dagger.Provides
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import com.yuriisurzhykov.tddgraded.palindrome.data.IPalindromeCheckState
+import com.yuriisurzhykov.tddgraded.presentation.Communication
 
-@Module
-@InstallIn(SingletonComponent::class)
-object CommonProviders {
-    @Provides
-    fun providesDispatchers(): Dispatchers {
-        return Dispatchers.Base()
-    }
+interface PalindromeCheckCommunication :
+    Communication.Put<IPalindromeCheckState>, Communication.Observe<IPalindromeCheckState> {
+    class Base : Communication.Abstract<IPalindromeCheckState>(), PalindromeCheckCommunication
 }

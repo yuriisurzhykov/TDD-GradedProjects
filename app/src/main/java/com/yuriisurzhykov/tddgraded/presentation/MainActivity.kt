@@ -19,9 +19,7 @@ package com.yuriisurzhykov.tddgraded.presentation
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.yuriisurzhykov.tddgraded.palindrome.presentation.PalindromeCheckActivity
 import com.yuriisurzhykov.tddgraded.primenumber.presentation.PrimeNumberCheckActivity
-import com.yuriisurzhykov.tddgraded.stringreverse.presentation.StringReverseActivity
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -14,19 +14,34 @@
  * limitations under the License.
  */
 
-package com.yuriisurzhykov.tddgraded.di
+package com.yuriisurzhykov.tddgraded.palindrome.di
 
-import com.yuriisurzhykov.tddgraded.core.data.Dispatchers
+import com.yuriisurzhykov.tddgraded.palindrome.domain.IPalindromeCheckUseCase
+import com.yuriisurzhykov.tddgraded.palindrome.domain.IPunctuationRemove
+import com.yuriisurzhykov.tddgraded.palindrome.domain.PalindromeCheckCommunication
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-object CommonProviders {
+object UseCaseModule {
+
     @Provides
-    fun providesDispatchers(): Dispatchers {
-        return Dispatchers.Base()
+    fun providePunctuationRemover(): IPunctuationRemove {
+        return IPunctuationRemove.Base()
+    }
+
+    @Provides
+    @Singleton
+    fun providePalindromeCheckUseCase(remover: IPunctuationRemove): IPalindromeCheckUseCase {
+        return IPalindromeCheckUseCase.Base(remover)
+    }
+
+    @Provides
+    fun providePalindromeCheckCommunication(): PalindromeCheckCommunication {
+        return PalindromeCheckCommunication.Base()
     }
 }
