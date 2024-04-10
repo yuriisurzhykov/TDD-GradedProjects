@@ -1,11 +1,11 @@
-import java.util.Properties
 import java.io.FileInputStream
+import java.util.Properties
 
 plugins {
-    id("com.android.application")
-    id(Plugins.kotlinAndroid)
-    id(Plugins.kotlinKapt)
-    id(Plugins.hilt)
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt)
 }
 
 kapt {
@@ -44,7 +44,10 @@ android {
             isDebuggable = false
             isMinifyEnabled = true
             isShrinkResources = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
             signingConfig = signingConfigs.getByName("release")
         }
     }
@@ -58,18 +61,18 @@ android {
 }
 
 dependencies {
-    implementation(project(":palindrome"))
-    implementation(project(":stringReverse"))
-    implementation(project(":core"))
-    implementation(project(":primeNumber"))
+    implementation(project(":core:data"))
+    implementation(project(":newbie:palindrome"))
+    implementation(project(":newbie:stringReverse"))
+    implementation(project(":newbie:primeNumber"))
 
-    implementation(Dependencies.Android.androidCoreKtx)
-    implementation(Dependencies.Android.appCompat)
-    implementation(Dependencies.Android.materialComponents)
-    implementation(Dependencies.Android.constraintLayout)
-    implementation(Dependencies.DI.hilt)
-    kapt(Dependencies.DI.hiltCompiler)
-    testImplementation(Dependencies.Testing.JUnit4)
-    androidTestImplementation(Dependencies.Testing.androidJUnit4)
-    androidTestImplementation(Dependencies.Testing.espressoCore)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.google.material)
+    implementation(libs.androidx.constraint)
+    implementation(libs.google.hilt.android)
+    kapt(libs.google.hilt.compiler)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
 }
