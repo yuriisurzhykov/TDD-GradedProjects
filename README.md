@@ -22,6 +22,7 @@
 - [ ] Tic Tac Toe Game
   - Requirements: [en](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/tictactoe/tictactoe/requirements_tictactoe_en.md), [ru](https://github.com/yuriysurzhikov/TDD-GradedProjects/tree/newbie/tictactoe/tictactoe/requirements_tictactoe_ru.md)
 - [ ] Fibonacci Generator
+  - Requirements: [en](https://github.com/yuriisurzhykov/TDD-GradedProjects/blob/newbie/feature/fibonacci/fibonacci/requirements_fibonacci.md)
 - [ ] Decimal to Binary
 - [ ] Number Guessing Game
 - [ ] Celsius to Fahrenheit
