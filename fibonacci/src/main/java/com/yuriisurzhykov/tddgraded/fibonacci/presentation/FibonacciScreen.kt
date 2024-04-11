@@ -16,11 +16,9 @@
 
 package com.yuriisurzhykov.tddgraded.fibonacci.presentation
 
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -44,6 +42,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.yuriisurzhykov.tddgraded.fibonacci.R
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
@@ -71,13 +70,11 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
         var textFieldAlignment by remember { mutableStateOf(Alignment.Center) }
         OutlinedTextField(
             modifier = Modifier
-                .fillMaxWidth(0.7f)
                 .constrainAs(input) {
                     top.linkTo(parent.top, margin = 16.dp)
                     start.linkTo(parent.start, margin = 16.dp)
-                    end.linkTo(parent.end, margin = 16.dp)
-                }
-                .animateContentSize(animationSpec = tween(500)),
+                    end.linkTo(button.start, margin = 16.dp)
+                },
             value = fibonacciAmount,
             onValueChange = { fibonacciAmount = it },
             placeholder = {
@@ -96,13 +93,11 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
         )
         Button(
             modifier = Modifier
-                .fillMaxWidth(0.7f)
                 .constrainAs(button) {
-                    bottom.linkTo(parent.bottom, margin = 16.dp)
-                    start.linkTo(parent.start, margin = 16.dp)
+                    top.linkTo(parent.top, margin = 16.dp)
+                    start.linkTo(input.end, margin = 16.dp)
                     end.linkTo(parent.end, margin = 16.dp)
-                }
-                .animateContentSize(animationSpec = tween(500)),
+                },
             onClick = {
                 api.startGenerate(fibonacciAmount)
                 focusManager.clearFocus()
@@ -111,19 +106,54 @@ fun FibonacciScreen(modifier: Modifier = Modifier, api: FibonacciScreenApi) {
         ) {
             Text(text = stringResource(id = R.string.fibonacci_sequence_generate_button))
         }
-        val state =
-            api.screenStateFlow().collectAsState(initial = FibonacciScreenState.Idle).value
-        state.Render(
-            Modifier
-                .fillMaxWidth()
-                .padding(12.dp)
+
+        val state = api
+            .screenStateFlow()
+            .collectAsState(initial = FibonacciScreenState.Idle)
+            .value
+
+        DynamicFibonacciState(
+            state = state,
+            modifier = Modifier
                 .constrainAs(list) {
                     top.linkTo(input.bottom, margin = 16.dp)
                     start.linkTo(parent.start, margin = 16.dp)
                     end.linkTo(parent.end, margin = 16.dp)
-                    bottom.linkTo(button.top, margin = 16.dp)
+                    bottom.linkTo(parent.bottom, margin = 16.dp)
                 }
         )
+    }
+}
+
+@Composable
+fun DynamicFibonacciState(
+    state: FibonacciScreenState,
+    modifier: Modifier = Modifier
+) {
+    when (state) {
+        is FibonacciScreenState.Idle -> {
+            Text(
+                text = stringResource(id = R.string.fibonacci_idle_text),
+                modifier = modifier
+            )
+        }
+
+        is FibonacciScreenState.Error -> {
+            Text(
+                modifier = modifier,
+                text = stringResource(id = R.string.error_message_format)
+                    .format(stringResource(id = state.reason))
+            )
+        }
+
+        is FibonacciScreenState.Generating -> {
+            val items = state.itemsFlow.collectAsStateWithLifecycle(emptyList()).value
+            LazyColumn(modifier = modifier) {
+                items(items) {
+                    Text(text = it.toString())
+                }
+            }
+        }
     }
 }
 
