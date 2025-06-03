@@ -15,6 +15,6 @@ interface FakeObserver<T : Any> : Observer<T> {
         }
 
         fun getCurrentValue() = value
-        fun getCallCount() = value
+        fun getCallCount() = callCount
     }
 }
